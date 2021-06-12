@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Card, Footer } from '../components'
+import { Heading, SimpleGrid, Text } from '@chakra-ui/react'
 
 export default function Home() {
   return (
@@ -16,57 +17,55 @@ export default function Home() {
       </Head>
 
       <main className="main">
-        <h1 className="title">
-          Petro <a>Silenius</a>
-        </h1>
-
-        <p className="description">Get started by editing </p>
         <Image src="/petro.png" width="200" height="200" />
 
-        <div className="grid">
+        <Heading as="h1" size="3xl" className="title">
+          Petro <span className="h1-span">Silenius</span>
+        </Heading>
+
+        <SimpleGrid columns={2} gap={6} maxWidth="800px" marginY={8}>
           <Card href="/about">
-            <h2>About me&rarr;</h2>
-            <p>Learn more about me and what I've been up to in life.</p>
+            <Heading as="h2" size="md">
+              About &rarr;
+            </Heading>
+            <Text>Learn more about me and what I've been up to in life.</Text>
           </Card>
           <Card href="/experience">
-            <h2>Experience &rarr;</h2>
-            <p>Explore my education and work history.</p>
+            <Heading as="h2" size="md">
+              Experience &rarr;
+            </Heading>
+            <Text>Explore my education and work history.</Text>
           </Card>
           <Card href="/examples">
-            <h2>Examples &rarr;</h2>
-            <p>Discover some of my freetime projects and completed courses.</p>
+            <Heading as="h2" size="md">
+              Examples &rarr;
+            </Heading>
+            <Text>
+              Discover some of my freetime projects and completed courses.
+            </Text>
           </Card>
           <Card href="/card">
-            <h2>Business card &rarr;</h2>
-            <p>Check out my business card and generate one for yourself!</p>
+            <Heading as="h2" size="md">
+              Business card &rarr;
+            </Heading>
+            <Text>
+              Check out my business card and generate one for yourself!
+            </Text>
           </Card>
-        </div>
+        </SimpleGrid>
       </main>
 
       <Footer />
       <style jsx>
         {`
-          .title {
-            margin: 0;
-            line-height: 1.15;
-            font-size: 4rem;
-            text-align: center;
-          }
-
-          .title a {
+          .h1-span {
             color: var(--link);
           }
 
-          .title a:hover,
-          .title a:focus,
-          .title a:active {
+          .h1-span:hover,
+          .h1-span:focus,
+          .h1-span:active {
             text-decoration: underline;
-          }
-
-          .description {
-            line-height: 1.5;
-            font-size: 1.5rem;
-            text-align: center;
           }
         `}
       </style>
