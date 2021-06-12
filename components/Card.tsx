@@ -8,7 +8,7 @@ interface CardProps {
 
 export const Card = ({ href, children }: CardProps): JSX.Element => {
   return (
-    <NextLink href={href}>
+    <NextLink href={href} passHref>
       <Link
         tabIndex={0}
         padding={6}
