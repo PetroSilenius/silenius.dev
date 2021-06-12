@@ -7,13 +7,15 @@ export const ThemeSwitch = (): JSX.Element => {
   const IconComponent = colorMode === 'dark' ? Sun : Moon
 
   return (
-    <IconButton
-      aria-label={`Toggle ${colorMode === 'dark' ? 'Light' : 'Dark'} mode`}
-      icon={<Icon as={IconComponent} />}
-      onClick={toggleColorMode}
-      position="absolute"
-      top="5"
-      right="5"
-    />
+    <aside>
+      <IconButton
+        aria-label={`Toggle ${colorMode === 'dark' ? 'Light' : 'Dark'} mode`}
+        icon={<Icon as={IconComponent} />}
+        onClick={toggleColorMode}
+        position="absolute"
+        top="5"
+        right="5"
+      />
+    </aside>
   )
 }

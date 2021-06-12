@@ -16,6 +16,7 @@ export const Footer = (): JSX.Element => {
           href="https://www.linkedin.com/in/petrosilenius/"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Linkedin profile"
         >
           <Linkedin />
         </a>
@@ -23,6 +24,7 @@ export const Footer = (): JSX.Element => {
           href="https://github.com/PetroSilenius"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Github profile"
         >
           <GitHub />
         </a>
@@ -30,6 +32,7 @@ export const Footer = (): JSX.Element => {
           href="mailto:petro.silenius@gmail.com?subject=Let's connect!&body=Hey Petro!%0D%0A%0D%0AI saw your website and would love to connect with you."
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Send an email"
         >
           <Send />
         </a>

@@ -17,7 +17,12 @@ export default function Home() {
       </Head>
 
       <main className="main">
-        <Image src="/petro.png" width="200" height="200" />
+        <Image
+          src="/petro.png"
+          width="200"
+          height="200"
+          alt="Petro Silenius wearing a denim jacket and looks to the future"
+        />
 
         <Heading as="h1" size="3xl" className="title">
           Petro <span className="h1-span">Silenius</span>
