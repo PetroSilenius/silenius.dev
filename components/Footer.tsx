@@ -1,39 +1,44 @@
-import Image from 'next/image'
+import { Linkedin, GitHub, Send } from 'react-feather'
+import { SimpleGrid } from '@chakra-ui/react'
 
 export const Footer = (): JSX.Element => {
   return (
     <footer className="footer">
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
+      <SimpleGrid
+        columns={3}
+        width="100%"
+        align="center"
+        paddingY={3}
+        borderTop="1px"
+        borderColor="gray.200"
       >
-        Powered by{' '}
-        <span className="logo">
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </span>
-      </a>
+        <a
+          href="https://www.linkedin.com/in/petrosilenius/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Linkedin />
+        </a>
+        <a
+          href="https://github.com/PetroSilenius"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GitHub />
+        </a>
+        <a
+          href="mailto:petro.silenius@gmail.com?subject=Let's connect!&body=Hey Petro!%0D%0A%0D%0AI saw your website and would love to connect with you."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Send />
+        </a>
+      </SimpleGrid>
+
       <style jsx>
         {`
           .footer {
-            width: 100%;
-            height: 100px;
-            border-top: 1px solid #eaeaea;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-
-          .footer a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-grow: 1;
-          }
-
-          .logo {
-            height: 1em;
-            margin-left: 0.5rem;
+            width: 100vw;
           }
         `}
       </style>
