@@ -10,7 +10,7 @@ export const Card = ({ href, children }: CardProps): JSX.Element => {
   return (
     <NextLink href={href}>
       <Link
-        tabindex={0}
+        tabIndex={0}
         padding={6}
         borderRadius="lg"
         border="1px"
