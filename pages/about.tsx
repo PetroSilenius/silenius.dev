@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Box, Heading, Text } from '@chakra-ui/react'
 
-export default function About() {
+export default function About(): JSX.Element {
   return (
     <>
       <Head>

@@ -1,7 +1,5 @@
-import { useState } from 'react'
 import Head from 'next/head'
 import { BusinessCard } from '../components'
-import { Stack, Radio, RadioGroup } from '@chakra-ui/react'
 
 const borderColorOptions = [
   'rgb(238, 16, 16), rgb(252, 176, 69)',
@@ -10,7 +8,7 @@ const borderColorOptions = [
   'rgb(208, 111, 63) 60%, rgb(245, 228, 211)',
 ]
 
-export default function Card() {
+export default function Card(): JSX.Element {
   // const [selectedBorderColor, setSelectedBorderColor] = useState('0')
   return (
     <>

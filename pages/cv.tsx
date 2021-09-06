@@ -1,4 +1,4 @@
-export default function Cv() {
+export default function Cv(): null {
   if (typeof window !== 'undefined') {
     window.location.href = '/Resume-Petro-Silenius.pdf'
   }

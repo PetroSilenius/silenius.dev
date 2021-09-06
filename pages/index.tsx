@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Card } from '../components'
-import { Heading, SimpleGrid, Text, textDecoration } from '@chakra-ui/react'
+import { Heading, SimpleGrid, Text } from '@chakra-ui/react'
 import { Linkedin, GitHub, CreditCard } from 'react-feather'
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <>
       <Head>
@@ -43,7 +43,9 @@ export default function Home() {
             <Heading as="h2" size="md">
               About &rarr;
             </Heading>
-            <Text>Learn more about me and what I've been up to in life.</Text>
+            <Text>
+              {"Learn more about me and what I've been up to in life."}
+            </Text>
           </Card>
           <Card href="https://www.linkedin.com/in/petrosilenius">
             <Heading as="h2" size="md" display="flex">

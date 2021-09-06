@@ -4,7 +4,7 @@ import { theme } from '../theme'
 import { ChakraProvider } from '@chakra-ui/react'
 import { ThemeSwitch } from '../components'
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <ChakraProvider theme={theme}>
       <div className="container">
