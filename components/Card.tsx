@@ -15,9 +15,9 @@ export const Card = ({ href, children }: CardProps): JSX.Element => {
         borderRadius="lg"
         border="1px"
         borderColor="gray.200"
-        _hover={{ color: 'blue.400', borderColor: 'blue.400' }}
-        _focus={{ color: 'blue.400', borderColor: 'blue.400' }}
-        _active={{ color: 'blue.400', borderColor: 'blue.400' }}
+        _hover={{ color: 'link', borderColor: 'link' }}
+        _focus={{ color: 'link', borderColor: 'link' }}
+        _active={{ color: 'link', borderColor: 'link' }}
       >
         {children}
       </Link>

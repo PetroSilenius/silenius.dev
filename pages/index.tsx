@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Card, Footer } from '../components'
-import { Heading, SimpleGrid, Text } from '@chakra-ui/react'
+import { Card } from '../components'
+import { Heading, SimpleGrid, Text, textDecoration } from '@chakra-ui/react'
+import { Linkedin, GitHub, CreditCard } from 'react-feather'
 
 export default function Home() {
   return (
@@ -25,7 +26,16 @@ export default function Home() {
         />
 
         <Heading as="h1" size="3xl" className="title">
-          Petro <span className="h1-span">Silenius</span>
+          Petro{' '}
+          <Text
+            as="span"
+            color="link"
+            _hover={{ textDecoration: 'underline' }}
+            _active={{ textDecoration: 'underline' }}
+            _focus={{ textDecoration: 'underline' }}
+          >
+            Silenius
+          </Text>
         </Heading>
 
         <SimpleGrid columns={2} gap={6} maxWidth="800px" marginY={8}>
@@ -35,23 +45,23 @@ export default function Home() {
             </Heading>
             <Text>Learn more about me and what I've been up to in life.</Text>
           </Card>
-          <Card href="/experience">
-            <Heading as="h2" size="md">
-              Experience &rarr;
+          <Card href="https://www.linkedin.com/in/petrosilenius">
+            <Heading as="h2" size="md" display="flex">
+              LinkedIn <Linkedin style={{ marginLeft: '10px' }} />
             </Heading>
-            <Text>Explore my education and work history.</Text>
+            <Text>Explore my work, education and volunteering history.</Text>
           </Card>
-          <Card href="/examples">
-            <Heading as="h2" size="md">
-              Examples &rarr;
+          <Card href="https://github.com/petrosilenius">
+            <Heading as="h2" size="md" display="flex">
+              GitHub <GitHub style={{ marginLeft: '10px' }} />
             </Heading>
             <Text>
               Discover some of my freetime projects and completed courses.
             </Text>
           </Card>
           <Card href="/card">
-            <Heading as="h2" size="md">
-              Business card &rarr;
+            <Heading as="h2" size="md" display="flex">
+              Business card <CreditCard style={{ marginLeft: '10px' }} />
             </Heading>
             <Text>
               Check out my business card and generate one for yourself!
@@ -59,21 +69,6 @@ export default function Home() {
           </Card>
         </SimpleGrid>
       </main>
-
-      <Footer />
-      <style jsx>
-        {`
-          .h1-span {
-            color: var(--link);
-          }
-
-          .h1-span:hover,
-          .h1-span:focus,
-          .h1-span:active {
-            text-decoration: underline;
-          }
-        `}
-      </style>
     </>
   )
 }

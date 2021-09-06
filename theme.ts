@@ -6,6 +6,8 @@ export const theme = extendTheme({
     heading:
       '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;',
   },
-  initialColorMode: 'light',
-  useSystemColorMode: false,
+  colors: {
+    link: '#0070f3',
+  },
+  useSystemColorMode: true,
 })
