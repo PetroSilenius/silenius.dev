@@ -11,7 +11,7 @@ const borderColorOptions = [
 ]
 
 export default function Card() {
-  const [selectedBorderColor, setSelectedBorderColor] = useState('0')
+  // const [selectedBorderColor, setSelectedBorderColor] = useState('0')
   return (
     <>
       <Head>
@@ -29,9 +29,12 @@ export default function Card() {
           imgSrc="/petro.png"
           name="Petro Silenius"
           title="Frontend Developer"
-          borderColors={borderColorOptions[parseInt(selectedBorderColor)]}
+          borderColors={borderColorOptions[1]}
+          github="petrosilenius"
+          linkedin="petrosilenius"
+          email="petro.silenius@gmail.com"
         />
-        <RadioGroup
+        {/*<RadioGroup
           onChange={setSelectedBorderColor}
           value={selectedBorderColor}
           margin={6}
@@ -42,7 +45,7 @@ export default function Card() {
             <Radio value="2">Green-yellow</Radio>
             <Radio value="3">Brown-white</Radio>
           </Stack>
-        </RadioGroup>
+        </RadioGroup>*/}
       </main>
     </>
   )

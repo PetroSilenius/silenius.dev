@@ -59,7 +59,7 @@ export default function Home() {
               Discover some of my freetime projects and completed courses.
             </Text>
           </Card>
-          <Card href="/card">
+          <Card href="/contact">
             <Heading as="h2" size="md" display="flex">
               Business card <CreditCard style={{ marginLeft: '10px' }} />
             </Heading>
