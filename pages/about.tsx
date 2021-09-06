@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Heading, Text } from '@chakra-ui/react'
+import { Box, Heading, Text } from '@chakra-ui/react'
 
 export default function About() {
   return (
@@ -16,11 +16,32 @@ export default function About() {
       </Head>
 
       <main className="main">
-        <Heading as="h1">
-          Petro <a>Silenius</a>
+        <Image
+          src="/petro.png"
+          width="200"
+          height="200"
+          alt="Petro Silenius wearing a denim jacket and looks to the future"
+        />
+
+        <Heading as="h1" size="3xl" className="title">
+          Petro{' '}
+          <Text
+            as="span"
+            color="link"
+            _hover={{ textDecoration: 'underline' }}
+            _active={{ textDecoration: 'underline' }}
+            _focus={{ textDecoration: 'underline' }}
+          >
+            Silenius
+          </Text>
         </Heading>
-        <Image src="/petro.png" width="200" height="200" />
-        <Text>Learn more about me and what I've been up to in life.</Text>
+
+        <Box mt="20" align="center">
+          <Text>
+            🚀 Driving frontend development forward at a B2B SaaS company
+          </Text>
+          <Text>📚 Graduated Master of Technology as a 22-year old</Text>
+        </Box>
       </main>
     </>
   )
