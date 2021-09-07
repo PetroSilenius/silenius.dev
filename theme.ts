@@ -9,5 +9,6 @@ export const theme = extendTheme({
   colors: {
     link: '#0070f3',
   },
+  initialColorMode: 'dark',
   useSystemColorMode: true,
 })
