@@ -1,16 +1,15 @@
 import { AppProps } from 'next/app'
-import '../styles/globals.css'
 import { theme } from '../theme'
-import { ChakraProvider } from '@chakra-ui/react'
+import { Center, ChakraProvider } from '@chakra-ui/react'
 import { ThemeSwitch } from '../components'
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <ChakraProvider theme={theme}>
-      <div className="container">
+      <Center h="100vh" px="2" flexDirection="column">
         <ThemeSwitch />
         <Component {...pageProps} />
-      </div>
+      </Center>
     </ChakraProvider>
   )
 }

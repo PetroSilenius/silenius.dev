@@ -19,20 +19,18 @@ export default function Card(): JSX.Element {
           content="🚀 Driving frontend development forward at a B2B SaaS company
         📚 Graduated Master of Technology as a 22-year old"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="main">
-        <BusinessCard
-          imgSrc="/petro.png"
-          name="Petro Silenius"
-          title="Frontend Developer"
-          borderColors={borderColorOptions[1]}
-          github="petrosilenius"
-          linkedin="petrosilenius"
-          email="petro.silenius@gmail.com"
-        />
-        {/*<RadioGroup
+      <BusinessCard
+        imgSrc="/petro.png"
+        name="Petro Silenius"
+        title="Frontend Developer"
+        borderColors={borderColorOptions[1]}
+        github="petrosilenius"
+        linkedin="petrosilenius"
+        email="petro.silenius@gmail.com"
+      />
+      {/*<RadioGroup
           onChange={setSelectedBorderColor}
           value={selectedBorderColor}
           margin={6}
@@ -44,7 +42,6 @@ export default function Card(): JSX.Element {
             <Radio value="3">Brown-white</Radio>
           </Stack>
         </RadioGroup>*/}
-      </main>
     </>
   )
 }

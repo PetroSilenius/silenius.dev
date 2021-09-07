@@ -12,37 +12,34 @@ export default function About(): JSX.Element {
           content="🚀 Driving frontend development forward at a B2B SaaS company
         📚 Graduated Master of Technology as a 22-year old"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="main">
-        <Image
-          src="/petro.png"
-          width="200"
-          height="200"
-          alt="Petro Silenius wearing a denim jacket and looks to the future"
-        />
+      <Image
+        src="/petro.png"
+        width="200"
+        height="200"
+        alt="Petro Silenius wearing a denim jacket and looks to the future"
+      />
 
-        <Heading as="h1" size="3xl" className="title">
-          Petro{' '}
-          <Text
-            as="span"
-            color="link"
-            _hover={{ textDecoration: 'underline' }}
-            _active={{ textDecoration: 'underline' }}
-            _focus={{ textDecoration: 'underline' }}
-          >
-            Silenius
-          </Text>
-        </Heading>
+      <Heading as="h1" size="3xl" className="title">
+        Petro{' '}
+        <Text
+          as="span"
+          color="link"
+          _hover={{ textDecoration: 'underline' }}
+          _active={{ textDecoration: 'underline' }}
+          _focus={{ textDecoration: 'underline' }}
+        >
+          Silenius
+        </Text>
+      </Heading>
 
-        <Box mt="20" align="center">
-          <Text>
-            🚀 Driving frontend development forward at a B2B SaaS company
-          </Text>
-          <Text>📚 Graduated Master of Technology as a 22-year old</Text>
-        </Box>
-      </main>
+      <Box mt="20" align="center">
+        <Text>
+          🚀 Driving frontend development forward at a B2B SaaS company
+        </Text>
+        <Text>📚 Graduated Master of Technology as a 22-year old</Text>
+      </Box>
     </>
   )
 }
