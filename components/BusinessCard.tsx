@@ -46,7 +46,7 @@ export const BusinessCard = ({
       >
         <Center>
           <Box w={[100, 150, 200]}>
-            <Image src={imgSrc} width="200" height="200" />
+            <Image src={imgSrc} width="200" height="200" alt={name} />
           </Box>
         </Center>
         <Box alignSelf="center">
