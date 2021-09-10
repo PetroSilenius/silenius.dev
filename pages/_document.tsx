@@ -8,6 +8,10 @@ export default class Document extends NextDocument {
       <Html lang="en">
         <Head>
           <link rel="icon" href="/favicon.svg" />
+          <meta
+            name="google-site-verification"
+            content="swVloPrga0dFmyC_146kLnCHhaQCcAVnSP3UfNTbzBw"
+          />
         </Head>
         <body>
           <Center as="main" flexDirection="column">
