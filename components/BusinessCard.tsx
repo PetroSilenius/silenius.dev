@@ -5,6 +5,8 @@ import {
   Heading,
   SimpleGrid,
   Text,
+  Icon,
+  Link,
   useColorModeValue,
 } from '@chakra-ui/react'
 import { Linkedin, GitHub, Send, FileText } from 'react-feather'
@@ -33,6 +35,8 @@ export const BusinessCard = ({
     '--chakra-colors-gray-800'
   )
 
+  const iconHoverColor = borderColors.split(', ')[0]
+
   return (
     <div className="business-card">
       <SimpleGrid
@@ -55,35 +59,63 @@ export const BusinessCard = ({
           </Heading>
           <Text fontSize="lg">{title}</Text>
           <SimpleGrid columns={4} width="100%" paddingTop={[5, 10]}>
-            <a
+            <Link
               href={`https://www.linkedin.com/in/${linkedin}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Linkedin profile"
+              w="fit-content"
             >
-              <Linkedin />
-            </a>
-            <a
+              <Icon
+                as={Linkedin}
+                h="6"
+                w="6"
+                transition="all 0.2s"
+                _hover={{ stroke: iconHoverColor }}
+              />
+            </Link>
+            <Link
               href={`https://github.com/${github}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Github profile"
+              w="fit-content"
             >
-              <GitHub />
-            </a>
-            <a
+              <Icon
+                as={GitHub}
+                h="6"
+                w="6"
+                transition="all 0.2s"
+                _hover={{ stroke: iconHoverColor }}
+              />
+            </Link>
+            <Link
               href={`mailto:${email}?subject=Let's connect!&body=Hey ${name}!%0D%0A%0D%0AI saw your website and would love to connect with you.`}
               aria-label="Send an email"
+              w="fit-content"
             >
-              <Send />
-            </a>
-            <a
+              <Icon
+                as={Send}
+                h="6"
+                w="6"
+                transition="all 0.2s"
+                _hover={{ stroke: iconHoverColor }}
+              />
+            </Link>
+            <Link
               href={`/Resume-Petro-Silenius.pdf`}
               download={`${name} resume`}
               aria-label={`Download ${name} resume`}
+              w="fit-content"
             >
-              <FileText />
-            </a>
+              <Icon
+                as={FileText}
+                h="6"
+                w="6"
+                transition="all 0.2s"
+                _hover={{ stroke: iconHoverColor }}
+              />
+            </Link>
           </SimpleGrid>
         </Box>
       </SimpleGrid>

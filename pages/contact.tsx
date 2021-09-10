@@ -2,10 +2,10 @@ import Head from 'next/head'
 import { BusinessCard } from '../components'
 
 const borderColorOptions = [
-  'rgb(238, 16, 16), rgb(252, 176, 69)',
-  'rgb(255, 78, 205), rgb(26, 117, 255)',
-  'rgb(4, 91, 86), rgb(253, 203, 73)',
-  'rgb(208, 111, 63) 60%, rgb(245, 228, 211)',
+  'rgb(238,16,16), rgb(252,176,69)',
+  'rgb(255,78,205), rgb(26,117,255)',
+  'rgb(4,91,86), rgb(253,203,73)',
+  'rgb(208,111,63) 60%, rgb(245, 228, 211)',
 ]
 
 export default function Card(): JSX.Element {
