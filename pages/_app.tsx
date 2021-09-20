@@ -7,7 +7,7 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode="dark" />
-      <Center h="100vh" px="2" flexDirection="column">
+      <Center minHeight="100vh" px="2" flexDirection="column">
         <ThemeSwitch />
         <Component {...pageProps} />
       </Center>
