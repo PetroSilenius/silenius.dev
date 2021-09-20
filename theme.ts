@@ -9,6 +9,24 @@ export const theme = extendTheme({
   colors: {
     link: '#0070f3',
   },
+  styles: {
+    global: () => ({
+      a: { textDecoration: 'none' },
+      'a:hover': {
+        color: 'link',
+        borderColor: 'link',
+        textDecoration: 'none !important',
+      },
+      'a:focus': {
+        color: 'link',
+        borderColor: 'link',
+      },
+      'a:active': {
+        color: 'link',
+        borderColor: 'link',
+      },
+    }),
+  },
   initialColorMode: 'dark',
   useSystemColorMode: true,
 })
