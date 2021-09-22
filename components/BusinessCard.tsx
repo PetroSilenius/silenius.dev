@@ -103,7 +103,7 @@ export const BusinessCard = ({
                 _hover={{ stroke: iconHoverColor }}
               />
             </Link>
-            <NextLink href={`/cv`}>
+            <NextLink href={`/cv`} passHref>
               <Link aria-label={`${name} resume`} w="fit-content">
                 <Icon
                   as={FileText}

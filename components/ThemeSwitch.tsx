@@ -3,11 +3,15 @@ import { useRouter } from 'next/router'
 import { Sun, Moon } from 'react-feather'
 import { Button, IconButton, Icon, useColorMode } from '@chakra-ui/react'
 
-export const ThemeSwitch = (): JSX.Element => {
+export const ThemeSwitch = (): JSX.Element | null => {
   const { route } = useRouter()
   const { colorMode, toggleColorMode } = useColorMode()
 
   const IconComponent = colorMode === 'dark' ? Sun : Moon
+
+  if (route === '/cv') {
+    return null
+  }
 
   return (
     <aside>
