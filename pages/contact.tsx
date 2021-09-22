@@ -9,16 +9,11 @@ const borderColorOptions = [
 ]
 
 export default function Card(): JSX.Element {
-  // const [selectedBorderColor, setSelectedBorderColor] = useState('0')
   return (
     <>
       <Head>
         <title>Business Card - Petro Silenius</title>
-        <meta
-          name="description"
-          content="🚀 Driving frontend development forward at a B2B SaaS company
-        📚 Graduated Master of Technology as a 22-year old"
-        />
+        <meta name="description" content="Contact information and resume" />
       </Head>
 
       <BusinessCard
@@ -30,18 +25,6 @@ export default function Card(): JSX.Element {
         linkedin="petrosilenius"
         email="petro.silenius@gmail.com"
       />
-      {/*<RadioGroup
-          onChange={setSelectedBorderColor}
-          value={selectedBorderColor}
-          margin={6}
-        >
-          <Stack direction="row">
-            <Radio value="0">Red-yellow</Radio>
-            <Radio value="1">Pink-blue</Radio>
-            <Radio value="2">Green-yellow</Radio>
-            <Radio value="3">Brown-white</Radio>
-          </Stack>
-        </RadioGroup>*/}
     </>
   )
 }
