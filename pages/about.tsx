@@ -10,8 +10,7 @@ export default function About(): JSX.Element {
         <title>About - Petro Silenius</title>
         <meta
           name="description"
-          content="🚀 Driving frontend development forward at a B2B SaaS company
-        📚 Graduated Master of Technology as a 22-year old"
+          content="Introducing myself to everyone who's interested✌🏻"
         />
       </Head>
 
@@ -24,7 +23,7 @@ export default function About(): JSX.Element {
         />
       </Box>
 
-      <Box mt="14" align="center">
+      <Box mt="14" textAlign="center">
         <Text fontSize="lg">
           🚀 Driving frontend development forward at a B2B SaaS company
         </Text>

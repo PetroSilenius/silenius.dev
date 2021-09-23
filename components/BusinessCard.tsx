@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import NextLink from 'next/link'
 import {
   Box,
   Center,
@@ -102,20 +103,17 @@ export const BusinessCard = ({
                 _hover={{ stroke: iconHoverColor }}
               />
             </Link>
-            <Link
-              href={`/Resume-Petro-Silenius.pdf`}
-              download={`${name} resume`}
-              aria-label={`Download ${name} resume`}
-              w="fit-content"
-            >
-              <Icon
-                as={FileText}
-                h="6"
-                w="6"
-                transition="all 0.2s"
-                _hover={{ stroke: iconHoverColor }}
-              />
-            </Link>
+            <NextLink href={`/cv`} passHref>
+              <Link aria-label={`${name} resume`} w="fit-content">
+                <Icon
+                  as={FileText}
+                  h="6"
+                  w="6"
+                  transition="all 0.2s"
+                  _hover={{ stroke: iconHoverColor }}
+                />
+              </Link>
+            </NextLink>
           </SimpleGrid>
         </Box>
       </SimpleGrid>
