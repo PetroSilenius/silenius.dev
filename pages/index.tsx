@@ -17,6 +17,7 @@ export default function Home(): JSX.Element {
       </Head>
 
       <Image
+        priority
         src="/petro.png"
         width="200"
         height="200"

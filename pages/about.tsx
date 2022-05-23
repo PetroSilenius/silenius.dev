@@ -16,6 +16,7 @@ export default function About(): JSX.Element {
 
       <Box mt="20">
         <Image
+          priority
           src="/header.jpeg"
           width="640"
           height="160"
