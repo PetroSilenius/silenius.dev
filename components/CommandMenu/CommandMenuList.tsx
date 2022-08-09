@@ -1,4 +1,4 @@
-import { MenuGroup, useColorMode } from '@chakra-ui/react'
+import { MenuGroup, useColorMode, MenuItem } from '@chakra-ui/react'
 import { Command } from 'cmdk'
 import {
   AlignCenter,
@@ -17,7 +17,9 @@ export const CommandMenuList = () => {
 
   return (
     <Command.List>
-      <Command.Empty>No results found.</Command.Empty>
+      <Command.Empty>
+        <MenuItem>No results found.</MenuItem>
+      </Command.Empty>
 
       <Command.Group heading={<MenuGroup title="Social media" />}>
         <CommandMenuItem icon={GitHub} href="https://github.com/petrosilenius">
