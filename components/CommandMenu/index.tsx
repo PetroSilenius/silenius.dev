@@ -1,14 +1,15 @@
 import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogOverlay,
   Menu,
   MenuDivider,
+  MenuList,
   useDisclosure,
   Text,
   Kbd,
   Input,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  ModalFooter,
 } from '@chakra-ui/react'
 import { useRef, useEffect } from 'react'
 import { Command } from 'cmdk'
@@ -39,37 +40,33 @@ export const CommandMenu = () => {
   }, [])
 
   return (
-    <AlertDialog
-      motionPreset="slideInBottom"
-      leastDestructiveRef={inputRef}
-      onClose={onClose}
-      isOpen={isOpen}
-      isCentered
-    >
-      <AlertDialogOverlay />
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
 
       <Command.Dialog open={true}>
-        <AlertDialogContent>
-          <Menu>
-            <Input
-              as={Command.Input}
-              placeholder="Search"
-              ref={inputRef}
-              border="none"
-              focusBorderColor="transparent"
-            />
-            <MenuDivider mt={0} />
+        <Menu onClose={onClose} isOpen={isOpen} id="absolute">
+          <ModalContent>
+            <MenuList w="200%" mt="100%">
+              <Input
+                as={Command.Input}
+                placeholder="Search"
+                ref={inputRef}
+                border="none"
+                focusBorderColor="transparent"
+              />
+              <MenuDivider mt={0} />
 
-            <CommandMenuList />
+              <CommandMenuList />
 
-            <MenuDivider mb={0} />
-            <AlertDialogFooter pt={1} pb={2}>
-              <Text pr={1}>Navigate to item</Text>
-              <Kbd mt="auto">↵</Kbd>
-            </AlertDialogFooter>
-          </Menu>
-        </AlertDialogContent>
+              <MenuDivider mb={0} />
+              <ModalFooter pt={1} pb={0}>
+                <Text pr={1}>Navigate to item</Text>
+                <Kbd mt="auto">↵</Kbd>
+              </ModalFooter>
+            </MenuList>
+          </ModalContent>
+        </Menu>
       </Command.Dialog>
-    </AlertDialog>
+    </Modal>
   )
 }
