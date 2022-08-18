@@ -1,5 +1,6 @@
+import { FormEventHandler, useRef, useState } from 'react'
 import { Button } from '@chakra-ui/button'
-import { FormControl, FormLabel } from '@chakra-ui/form-control'
+import { FormControl, FormLabel, FormHelperText } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
 import { Box, SimpleGrid, Stack } from '@chakra-ui/layout'
 import { useRadio, useRadioGroup } from '@chakra-ui/radio'
@@ -7,6 +8,41 @@ import { useColorModeValue } from '@chakra-ui/react'
 import { Textarea } from '@chakra-ui/textarea'
 
 export const ContactForm = (): JSX.Element => {
+  const formEl = useRef<HTMLFormElement>(null)
+
+  const [formSuccess, setFormSuccess] = useState<boolean>(false)
+  const [formError, setFormError] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+
+  const submitHandler: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault()
+
+    if (formEl === null || formEl.current === null) return
+
+    const formData = new FormData(formEl.current)
+
+    setLoading(true)
+
+    fetch('/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams(formData as any).toString(),
+    })
+      .then(() => {
+        setFormSuccess(true)
+        setFormError(false)
+      })
+      .catch(() => {
+        setFormError(true)
+        setFormSuccess(false)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }
+
   return (
     <>
       <SimpleGrid
@@ -26,6 +62,8 @@ export const ContactForm = (): JSX.Element => {
             method="POST"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
+            onSubmit={submitHandler}
+            ref={formEl}
           >
             <input type="hidden" name="form-name" value="contact" />
             <p hidden>
@@ -36,10 +74,15 @@ export const ContactForm = (): JSX.Element => {
 
             <FormControl isRequired mb="1rem">
               <FormLabel fontWeight="bold">First Name:</FormLabel>
-              <Input name="name" type="text" placeholder="First Name" />
+              <Input
+                name="name"
+                type="text"
+                placeholder="First Name"
+                disabled={formSuccess}
+              />
             </FormControl>
 
-            <ContactReasonControl />
+            <ContactReasonControl disabled={formSuccess} />
 
             <FormControl mb="1rem">
               <FormLabel fontWeight="bold">Your Message:</FormLabel>
@@ -47,12 +90,35 @@ export const ContactForm = (): JSX.Element => {
                 name="message"
                 placeholder="Enter your message here"
                 rows={4}
+                disabled={formSuccess}
               />
             </FormControl>
 
-            <Button size="lg" mt={4} colorScheme="blue" type="submit">
-              Send Message
-            </Button>
+            <FormControl>
+              {formSuccess && (
+                <FormHelperText color={'green.500'}>
+                  Your message has been sent!
+                </FormHelperText>
+              )}
+
+              {formError && (
+                <FormHelperText color={'red.500'}>
+                  Something went wrong, Please try again.
+                </FormHelperText>
+              )}
+
+              <Button
+                size="lg"
+                mt={4}
+                colorScheme="blue"
+                type="submit"
+                disabled={loading || formSuccess}
+                isLoading={loading}
+                loadingText="Sending"
+              >
+                Send Message
+              </Button>
+            </FormControl>
           </form>
         </Box>
       </SimpleGrid>
@@ -60,7 +126,11 @@ export const ContactForm = (): JSX.Element => {
   )
 }
 
-function ContactReasonControl() {
+type ContactReasonControlProps = {
+  disabled: boolean
+}
+
+function ContactReasonControl({ disabled }: ContactReasonControlProps) {
   const options = [
     'I want to hire you',
     'I want to get to know you',
@@ -76,7 +146,7 @@ function ContactReasonControl() {
   const group = getRootProps()
 
   return (
-    <FormControl as="fieldset" mb="1rem">
+    <FormControl as="fieldset" mb="1rem" disabled={disabled}>
       <FormLabel as="legend" fontWeight="bold">
         Reason for contact:
       </FormLabel>
@@ -85,7 +155,7 @@ function ContactReasonControl() {
           const radio = getRadioProps({ value })
 
           return (
-            <RadioOption key={value} {...radio}>
+            <RadioOption key={value} {...radio} disabled={disabled}>
               {value}
             </RadioOption>
           )
@@ -111,7 +181,7 @@ function RadioOption(props: any) {
       <Box
         {...checkbox}
         display="inline-block"
-        cursor="pointer"
+        cursor={props.disabled ? 'not-allowed' : 'pointer'}
         borderWidth="1px"
         borderRadius="md"
         color={textColor}
