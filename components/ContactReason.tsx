@@ -28,7 +28,7 @@ export const ContactReason = (): JSX.Element => {
           const radio = getRadioProps({ value })
 
           return (
-            <RadioCard key={value} {...radio}>
+            <RadioCard key={value} props={radio}>
               {value}
             </RadioCard>
           )

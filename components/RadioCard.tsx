@@ -1,7 +1,13 @@
 import { Box } from '@chakra-ui/layout'
 import { useRadio } from '@chakra-ui/radio'
+import { UseRadioProps } from '@chakra-ui/react'
 
-export const RadioCard = (props: any): JSX.Element => {
+interface RadioCardProps {
+  props: UseRadioProps
+  children: string
+}
+
+export const RadioCard = ({ props, children }: RadioCardProps): JSX.Element => {
   const { getInputProps, getCheckboxProps } = useRadio(props)
 
   const input = getInputProps()
@@ -27,7 +33,7 @@ export const RadioCard = (props: any): JSX.Element => {
         px={4}
         py={2}
       >
-        {props.children}
+        {children}
       </Box>
     </Box>
   )
