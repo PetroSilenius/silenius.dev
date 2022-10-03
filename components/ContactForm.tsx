@@ -1,12 +1,12 @@
 import { Button } from '@chakra-ui/button'
 import { FormControl, FormLabel } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
-import { Box, SimpleGrid, Stack } from '@chakra-ui/layout'
-import { useRadio, useRadioGroup } from '@chakra-ui/radio'
+import { Box, SimpleGrid } from '@chakra-ui/layout'
 import { Heading } from '@chakra-ui/react'
 import { Textarea } from '@chakra-ui/textarea'
+import { ContactReason } from '../components'
 
-export const ContactForm = () => {
+export const ContactForm = (): JSX.Element => {
   return (
     <>
       <Heading>Feel free to get in touch</Heading>
@@ -51,72 +51,5 @@ export const ContactForm = () => {
         </Box>
       </SimpleGrid>
     </>
-  )
-}
-
-function RadioCard(props: any) {
-  const { getInputProps, getCheckboxProps } = useRadio(props)
-
-  const input = getInputProps()
-
-  const checkbox = getCheckboxProps()
-
-  return (
-    <Box as="label">
-      <input {...input} />
-
-      <Box
-        {...checkbox}
-        display="inline-block"
-        cursor="pointer"
-        borderWidth="1px"
-        borderRadius="md"
-        color="gray.700"
-        _checked={{
-          borderColor: 'link',
-
-          color: 'link',
-        }}
-        px={4}
-        py={2}
-      >
-        {props.children}
-      </Box>
-    </Box>
-  )
-}
-
-function ContactReason() {
-  const options = [
-    'I want to hire you',
-    'I want to get to know you',
-    'Could you help me out',
-  ]
-
-  const { getRootProps, getRadioProps } = useRadioGroup({
-    name: 'reason',
-
-    defaultValue: options[0],
-  })
-
-  const group = getRootProps()
-
-  return (
-    <FormControl as="fieldset" mb="1rem">
-      <FormLabel as="legend" fontWeight="bold">
-        Reason for contact:
-      </FormLabel>
-      <Stack {...group} align="start">
-        {options.map((value) => {
-          const radio = getRadioProps({ value })
-
-          return (
-            <RadioCard key={value} {...radio}>
-              {value}
-            </RadioCard>
-          )
-        })}
-      </Stack>
-    </FormControl>
   )
 }
