@@ -9,7 +9,7 @@ import { Textarea } from '@chakra-ui/textarea'
 export const ContactForm = () => {
   return (
     <>
-      <Heading>Fell free to get in touch</Heading>
+      <Heading>Feel free to get in touch</Heading>
 
       <SimpleGrid
         maxW="md"
