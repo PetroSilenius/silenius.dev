@@ -26,38 +26,29 @@ export default function About(): JSX.Element {
 
       <Box mt="14" textAlign="center">
         <Text fontSize="lg">
-          🚀 Driving frontend development forward at a B2B SaaS company
-        </Text>
-        <Text fontSize="lg">
-          📚 Graduated Master of Technology as a 22-year old
+          💻 Lead developer @Ruokaboksi
         </Text>
       </Box>
       <Box mt="6" mb="4" maxWidth="xl">
         <Stack spacing={3}>
           <Heading as="h2" size="md">
-            {"I'm an enthusiastic frontend developer from Turku, Finland."}
+            {"I'm an enthusiastic developer from Turku, Finland."}
           </Heading>
           <Text>
             {
-              "I'm currently working and driving frontend development forward at a SaaS company "
+              "I'm currently working as a Lead developer at "
             }
-            <a href="https://www.lyyti.com">
-              <b>@Lyyti Oy</b>
-            </a>
-            {'. Some part of my week I tend to spend with my company '}
-            <a href="https://www.dataatti.io">
-              <b>@Dataatti Oy</b>
-            </a>
-            {' helping our customers create value to their users.'}
+            <a href="https://ruokaboksi.fi">Ruokaboksi</a>
+            {' which is a mealkit subscription platform delivering easy, healthy and delicous meals weekly to your home door 📦'}
           </Text>
           <Text>
             {
-              "I graduated as a Master of Technology from University of Turku when I was 22 years old and I'm grateful for the lessons I learned. Especially student activity introduced me to great people and tought me a lot. 🎓"
+              "I graduated as a Master of Technology from University of Turku when I was 22 years old and I'm grateful for the lessons I learned. Especially student activity introduced me to great people and taught me a lot. 🎓 Some of my favourite memories there are from organising a biweekly code club or organising events for hundreds of participants"
             }
           </Text>
           <Text>
             {
-              "On my freetime I cycle here and there but also organise a biweekly code club for university students to help them become better developers. I'm also known for my scouting background where I worked on different projects such as a 40-person two week all-inclusive camp in Italy. 🚲"
+              "On my freetime I cycle here and there, most recently I've picked up an eletric fatbike which is awesome during the winter. I'm also known for my scouting background where I worked on different projects such as a 40-person two week all-inclusive camp in Italy. 🚲"
             }
           </Text>
           <Text>
