@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Card } from '../components'
 import { Heading, SimpleGrid, Text } from '@chakra-ui/react'
-import { Linkedin, GitHub, CreditCard, AlignCenter } from 'react-feather'
+import { Linkedin, GitHub, CreditCard, AlignCenter, Send } from 'react-feather'
 
 export default function Home(): JSX.Element {
   return (
@@ -58,11 +58,17 @@ export default function Home(): JSX.Element {
             Discover some of my freetime projects and completed courses.
           </Text>
         </Card>
-        <Card href="/contact">
+        <Card href="/card">
           <Heading as="h2" size="md" display="flex">
             Business card <CreditCard style={{ marginLeft: '10px' }} />
           </Heading>
           <Text>Check out my business card and generate one for yourself!</Text>
+        </Card>
+        <Card href="/contact">
+          <Heading as="h2" size="md" display="flex">
+            Contact Me <Send style={{ marginLeft: '10px' }} />
+          </Heading>
+          <Text>Get in touch, to hire me, ask for help or just say hi!</Text>
         </Card>
       </SimpleGrid>
     </>
