@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Card } from '../components'
-import { Heading, SimpleGrid, Text } from '@chakra-ui/react'
+import { Heading, SimpleGrid, Text, Kbd } from '@chakra-ui/react'
 import { Linkedin, GitHub, CreditCard, AlignCenter } from 'react-feather'
+import { GetServerSideProps } from 'next'
 
-export default function Home(): JSX.Element {
+export default function Home({ isMobile }: { isMobile: boolean }): JSX.Element {
   return (
     <>
       <Head>
@@ -65,6 +66,22 @@ export default function Home(): JSX.Element {
           <Text>Check out my business card and generate one for yourself!</Text>
         </Card>
       </SimpleGrid>
+
+      {!isMobile && (
+        <Text position="absolute" bottom={5} right={5} my="5px">
+          🎮 Press <Kbd>⌘K</Kbd>
+        </Text>
+      )}
     </>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const isMobile = req.headers['user-agent']?.includes('Mobile')
+
+  return {
+    props: {
+      isMobile,
+    },
+  }
 }
