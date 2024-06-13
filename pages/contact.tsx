@@ -1,5 +1,6 @@
+import { Box, Stack } from '@chakra-ui/layout'
 import Head from 'next/head'
-import { BusinessCard } from '../components'
+import { BusinessCard, ContactForm } from '../components'
 
 const borderColorOptions = [
   'rgb(238,16,16), rgb(252,176,69)',
@@ -16,15 +17,21 @@ export default function Card(): JSX.Element {
         <meta name="description" content="Contact information and resume" />
       </Head>
 
-      <BusinessCard
-        imgSrc="/petro.png"
-        name="Petro Silenius"
-        title="Frontend Developer"
-        borderColors={borderColorOptions[1]}
-        github="petrosilenius"
-        linkedin="petrosilenius"
-        email="petro.silenius@gmail.com"
-      />
+      <Box my="5rem">
+        <Stack align="center" spacing="4rem">
+          <BusinessCard
+            imgSrc="/petro.png"
+            name="Petro Silenius"
+            title="Frontend Developer"
+            borderColors={borderColorOptions[1]}
+            github="petrosilenius"
+            linkedin="petrosilenius"
+            email="petro.silenius@gmail.com"
+          />
+
+          <ContactForm />
+        </Stack>
+      </Box>
     </>
   )
 }
