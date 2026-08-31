@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import NextLink from 'next/link'
@@ -25,21 +26,19 @@ export default function About(): JSX.Element {
       </Box>
 
       <Box mt="14" textAlign="center">
-        <Text fontSize="lg">
-          💻 Lead developer @Ruokaboksi
-        </Text>
+        <Text fontSize="lg">💻 Lead developer @Ruokaboksi</Text>
       </Box>
       <Box mt="6" mb="4" maxWidth="xl">
-        <Stack spacing={3}>
+        <Stack gap={3}>
           <Heading as="h2" size="md">
             {"I'm an enthusiastic developer from Turku, Finland."}
           </Heading>
           <Text>
-            {
-              "I'm currently working as a Lead developer at "
-            }
+            {"I'm currently working as a Lead developer at "}
             <a href="https://ruokaboksi.fi">Ruokaboksi</a>
-            {' which is a mealkit subscription platform delivering easy, healthy and delicous meals weekly to your home door 📦'}
+            {
+              ' which is a mealkit subscription platform delivering easy, healthy and delicous meals weekly to your home door 📦'
+            }
           </Text>
           <Text>
             {
@@ -56,17 +55,13 @@ export default function About(): JSX.Element {
               "If you're looking to contact me I recommend you to grab my business card from "
             }
             <NextLink href="/contact">
-              <a>
-                <b>silenius.dev/contact</b>
-              </a>
+              <b>silenius.dev/contact</b>
             </NextLink>
             {
               '. And if you wanna research my expertise a bit more before doing that you should check out '
             }
             <NextLink href="/cv">
-              <a>
-                <b>my CV</b>
-              </a>
+              <b>my CV</b>
             </NextLink>
           </Text>
         </Stack>
