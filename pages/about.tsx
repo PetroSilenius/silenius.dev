@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -41,8 +42,8 @@ export default function About({ bio }: AboutProps): JSX.Element {
         </Text>
       </Box>
       <Box mt="6" mb="4" px="4" maxWidth="xl">
-        <Stack spacing={3}>
-          <Heading as="h2" size="md">
+        <Stack gap={3}>
+          <Heading as="h2" size="xl">
             {bio.heading}
           </Heading>
           {bio.paragraphs.map((paragraph, index) => (
@@ -53,17 +54,13 @@ export default function About({ bio }: AboutProps): JSX.Element {
               "If you're looking to contact me I recommend you to grab my business card from "
             }
             <NextLink href="/contact">
-              <a>
-                <b>silenius.dev/contact</b>
-              </a>
+              <b>silenius.dev/contact</b>
             </NextLink>
             {
               '. And if you wanna research my expertise a bit more before doing that you should check out '
             }
             <NextLink href="/cv">
-              <a>
-                <b>my CV</b>
-              </a>
+              <b>my CV</b>
             </NextLink>
           </Text>
         </Stack>

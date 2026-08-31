@@ -1,7 +1,9 @@
+import type { JSX } from 'react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { Sun, Moon } from 'react-feather'
-import { Button, IconButton, Icon, useColorMode } from '@chakra-ui/react'
+import { Button, IconButton, Icon } from '@chakra-ui/react'
+import { useColorMode } from './color-mode'
 
 export const ThemeSwitch = (): JSX.Element | null => {
   const { route } = useRouter()
@@ -16,20 +18,28 @@ export const ThemeSwitch = (): JSX.Element | null => {
   return (
     <aside>
       {route !== '/' && (
-        <NextLink href="/">
-          <Button aria-label="Go back" position="absolute" top="5" left="5">
-            &larr;
-          </Button>
-        </NextLink>
+        <Button
+          asChild
+          variant="subtle"
+          fontSize="md"
+          aria-label="Go back"
+          position="absolute"
+          top="5"
+          left="5"
+        >
+          <NextLink href="/">&larr;</NextLink>
+        </Button>
       )}
       <IconButton
         aria-label={`Toggle ${colorMode === 'dark' ? 'Light' : 'Dark'} mode`}
-        icon={<Icon as={IconComponent} />}
         onClick={toggleColorMode}
+        variant="subtle"
         position="absolute"
         top="5"
         right="5"
-      />
+      >
+        <Icon as={IconComponent} />
+      </IconButton>
     </aside>
   )
 }

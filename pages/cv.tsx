@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import Head from 'next/head'
 import { Box } from '@chakra-ui/react'
 
@@ -17,11 +18,7 @@ export default function Cv(): JSX.Element {
           title="Resume - Petro Silenius"
           height="100%"
           width="100%"
-        >
-          This browser does not support PDFs. Please download the resume to view
-          it:
-          <a href="/Resume-Petro-Silenius.pdf">Download resume</a>
-        </iframe>
+        />
       </Box>
     </>
   )

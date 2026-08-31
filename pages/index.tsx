@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Card } from '../components'
@@ -24,7 +25,7 @@ export default function Home(): JSX.Element {
         alt="Petro Silenius wearing a denim jacket and looks to the future"
       />
 
-      <Heading as="h1" size="3xl" className="title">
+      <Heading as="h1" size="5xl" className="title">
         Petro{' '}
         <Text
           as="span"
@@ -39,19 +40,19 @@ export default function Home(): JSX.Element {
 
       <SimpleGrid columns={2} gap={6} maxWidth="800px" marginY={8}>
         <Card href="/about">
-          <Heading as="h2" size="md" display="flex">
+          <Heading as="h2" size="xl" display="flex">
             About <AlignCenter style={{ marginLeft: '10px' }} />
           </Heading>
           <Text>{"Learn more about me and what I've been up to in life."}</Text>
         </Card>
         <Card href="https://www.linkedin.com/in/petrosilenius">
-          <Heading as="h2" size="md" display="flex">
+          <Heading as="h2" size="xl" display="flex">
             LinkedIn <Linkedin style={{ marginLeft: '10px' }} />
           </Heading>
           <Text>Explore my work, education and volunteering history.</Text>
         </Card>
         <Card href="https://github.com/petrosilenius">
-          <Heading as="h2" size="md" display="flex">
+          <Heading as="h2" size="xl" display="flex">
             GitHub <GitHub style={{ marginLeft: '10px' }} />
           </Heading>
           <Text>
@@ -59,7 +60,7 @@ export default function Home(): JSX.Element {
           </Text>
         </Card>
         <Card href="/contact">
-          <Heading as="h2" size="md" display="flex">
+          <Heading as="h2" size="xl" display="flex">
             Business card <CreditCard style={{ marginLeft: '10px' }} />
           </Heading>
           <Text>Check out my business card and generate one for yourself!</Text>

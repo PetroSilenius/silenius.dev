@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import {
@@ -8,8 +9,8 @@ import {
   Text,
   Icon,
   Link,
-  useColorModeValue,
 } from '@chakra-ui/react'
+import { useColorModeValue } from './color-mode'
 import { Linkedin, GitHub, Send, FileText } from 'react-feather'
 
 interface BusinessCardProps {
@@ -33,7 +34,7 @@ export const BusinessCard = ({
 }: BusinessCardProps): JSX.Element => {
   const cardBgColor = useColorModeValue(
     '--chakra-colors-white',
-    '--chakra-colors-gray-800'
+    '--chakra-colors-gray-800',
   )
 
   const iconHoverColor = borderColors.split(', ')[0]
@@ -55,7 +56,7 @@ export const BusinessCard = ({
           </Box>
         </Center>
         <Box alignSelf="center">
-          <Heading as="h2" size="lg">
+          <Heading as="h2" size="2xl">
             {name}
           </Heading>
           <Text fontSize="lg">{title}</Text>
@@ -103,8 +104,8 @@ export const BusinessCard = ({
                 _hover={{ stroke: iconHoverColor }}
               />
             </Link>
-            <NextLink href={`/cv`} passHref>
-              <Link aria-label={`${name} resume`} w="fit-content">
+            <Link asChild aria-label={`${name} resume`} w="fit-content">
+              <NextLink href="/cv">
                 <Icon
                   as={FileText}
                   h="6"
@@ -112,8 +113,8 @@ export const BusinessCard = ({
                   transition="all 0.2s"
                   _hover={{ stroke: iconHoverColor }}
                 />
-              </Link>
-            </NextLink>
+              </NextLink>
+            </Link>
           </SimpleGrid>
         </Box>
       </SimpleGrid>
