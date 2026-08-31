@@ -11,7 +11,7 @@ interface AboutProps {
 
 export const getStaticProps: GetStaticProps<AboutProps> = async () => {
   const bio = await getProfileBio()
-  return { props: { bio }, revalidate: 3600 }
+  return { props: { bio } }
 }
 
 export default function About({ bio }: AboutProps): JSX.Element {
