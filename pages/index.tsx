@@ -3,7 +3,13 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Card } from '../components'
 import { Heading, SimpleGrid, Text } from '@chakra-ui/react'
-import { Linkedin, GitHub, CreditCard, AlignCenter } from 'react-feather'
+import {
+  Linkedin,
+  GitHub,
+  CreditCard,
+  AlignCenter,
+  Layers,
+} from 'react-feather'
 
 export default function Home(): JSX.Element {
   return (
@@ -39,6 +45,16 @@ export default function Home(): JSX.Element {
       </Heading>
 
       <SimpleGrid columns={2} gap={6} maxWidth="800px" marginY={8}>
+        <Card href="/projects" gridColumn="span 2">
+          <Heading as="h2" size="xl" display="flex">
+            Projects <Layers style={{ marginLeft: '10px' }} />
+          </Heading>
+          <Text>
+            {
+              "Browse the projects I've pinned on GitHub, told in their own words."
+            }
+          </Text>
+        </Card>
         <Card href="/about">
           <Heading as="h2" size="xl" display="flex">
             About <AlignCenter style={{ marginLeft: '10px' }} />
