@@ -20,6 +20,7 @@ export const ThemeSwitch = (): JSX.Element | null => {
       {route !== '/' && (
         <Button
           asChild
+          variant="subtle"
           aria-label="Go back"
           position="absolute"
           top="5"
@@ -31,6 +32,7 @@ export const ThemeSwitch = (): JSX.Element | null => {
       <IconButton
         aria-label={`Toggle ${colorMode === 'dark' ? 'Light' : 'Dark'} mode`}
         onClick={toggleColorMode}
+        variant="subtle"
         position="absolute"
         top="5"
         right="5"

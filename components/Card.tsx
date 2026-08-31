@@ -15,7 +15,7 @@ export const Card = ({ href, children }: CardProps): JSX.Element => {
       display="block"
       padding={6}
       borderRadius="lg"
-      border="1px"
+      border="1px solid"
       borderColor="gray.200"
     >
       <NextLink href={href}>{children}</NextLink>
