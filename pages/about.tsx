@@ -40,7 +40,7 @@ export default function About({ bio }: AboutProps): JSX.Element {
           💻 {bio.role} @{bio.company}
         </Text>
       </Box>
-      <Box mt="6" mb="4" maxWidth="xl">
+      <Box mt="6" mb="4" px="4" maxWidth="xl">
         <Stack spacing={3}>
           <Heading as="h2" size="md">
             {bio.heading}
