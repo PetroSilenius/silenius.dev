@@ -31,7 +31,7 @@ export function parseProfileBio(markdown: string): ProfileBio | null {
       paragraph
         .replace(/<img[^>]*>/gi, '')
         .replace(/\s+/g, ' ')
-        .trim()
+        .trim(),
     )
     .filter(Boolean)
 
@@ -42,7 +42,7 @@ export function parseProfileBio(markdown: string): ProfileBio | null {
   const bioParagraphs = paragraphs.slice(0, -1)
 
   const roleMatch = bioParagraphs[0]?.match(
-    /working as (?:a |an )?([^<]+?) at <a[^>]*>([^<]+)<\/a>/i
+    /working as (?:a |an )?([^<]+?) at <a[^>]*>([^<]+)<\/a>/i,
   )
 
   return {
