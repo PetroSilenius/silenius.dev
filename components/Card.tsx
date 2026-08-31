@@ -12,6 +12,7 @@ export const Card = ({ href, children }: CardProps): JSX.Element => {
     <Link
       asChild
       tabIndex={0}
+      display="block"
       padding={6}
       borderRadius="lg"
       border="1px"
