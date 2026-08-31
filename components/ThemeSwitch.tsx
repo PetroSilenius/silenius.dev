@@ -21,6 +21,7 @@ export const ThemeSwitch = (): JSX.Element | null => {
         <Button
           asChild
           variant="subtle"
+          fontSize="md"
           aria-label="Go back"
           position="absolute"
           top="5"

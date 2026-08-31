@@ -56,7 +56,7 @@ export const BusinessCard = ({
           </Box>
         </Center>
         <Box alignSelf="center">
-          <Heading as="h2" size="lg">
+          <Heading as="h2" size="2xl">
             {name}
           </Heading>
           <Text fontSize="lg">{title}</Text>

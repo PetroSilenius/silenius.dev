@@ -30,7 +30,7 @@ export default function About(): JSX.Element {
       </Box>
       <Box mt="6" mb="4" maxWidth="xl">
         <Stack gap={3}>
-          <Heading as="h2" size="md">
+          <Heading as="h2" size="xl">
             {"I'm an enthusiastic developer from Turku, Finland."}
           </Heading>
           <Text>
