@@ -6,10 +6,10 @@ import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 import remarkHtml from 'remark-html'
 
-const POSTS_DIRECTORY = path.join(process.cwd(), 'content', 'linkedin')
+const POSTS_DIRECTORY = path.join(process.cwd(), 'content', 'posts')
 const POST_EXTENSIONS = ['.md', '.mdx']
 
-export interface LinkedInPostMeta {
+export interface PostMeta {
   slug: string
   title: string
   date: string
@@ -18,7 +18,7 @@ export interface LinkedInPostMeta {
   tags: string[]
 }
 
-export interface LinkedInPost extends LinkedInPostMeta {
+export interface Post extends PostMeta {
   contentHtml: string
 }
 
@@ -42,7 +42,7 @@ function readPostFile(filename: string): {
 function toPostMeta(
   slug: string,
   data: matter.GrayMatterFile<string>['data'],
-): LinkedInPostMeta {
+): PostMeta {
   return {
     slug,
     title: data.title ?? slug,
@@ -53,7 +53,7 @@ function toPostMeta(
   }
 }
 
-export function getAllLinkedInPosts(): LinkedInPostMeta[] {
+export function getAllPosts(): PostMeta[] {
   const posts = getPostFilenames().map((filename) => {
     const { slug, matterResult } = readPostFile(filename)
     return toPostMeta(slug, matterResult.data)
@@ -62,13 +62,11 @@ export function getAllLinkedInPosts(): LinkedInPostMeta[] {
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
 }
 
-export function getAllLinkedInPostSlugs(): string[] {
+export function getAllPostSlugs(): string[] {
   return getPostFilenames().map((filename) => filename.replace(/\.mdx?$/, ''))
 }
 
-export async function getLinkedInPostBySlug(
-  slug: string,
-): Promise<LinkedInPost | null> {
+export async function getPostBySlug(slug: string): Promise<Post | null> {
   const filename = getPostFilenames().find(
     (name) => name.replace(/\.mdx?$/, '') === slug,
   )

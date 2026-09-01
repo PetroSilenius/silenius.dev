@@ -71,9 +71,9 @@ export default function Home(): JSX.Element {
           </Heading>
           <Text>Check out my business card and generate one for yourself!</Text>
         </Card>
-        <Card href="/linkedin">
+        <Card href="/posts">
           <Heading as="h2" size="xl" display="flex">
-            LinkedIn Posts <AlignLeft style={{ marginLeft: '10px' }} />
+            Posts <AlignLeft style={{ marginLeft: '10px' }} />
           </Heading>
           <Text>Read reposts of what I share on LinkedIn, right here.</Text>
         </Card>

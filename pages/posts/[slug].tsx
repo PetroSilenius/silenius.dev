@@ -3,39 +3,34 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import NextLink from 'next/link'
 import { Box, HStack, Heading, Link, Tag, Text } from '@chakra-ui/react'
-import {
-  getAllLinkedInPostSlugs,
-  getLinkedInPostBySlug,
-} from '../../lib/linkedin-posts'
-import type { LinkedInPost } from '../../lib/linkedin-posts'
+import { getAllPostSlugs, getPostBySlug } from '../../lib/posts'
+import type { Post } from '../../lib/posts'
 import { formatPostDate } from '../../lib/format-date'
 import { SITE_URL } from '../../lib/site'
 
-interface LinkedInPostPageProps {
-  post: LinkedInPost
+interface PostPageProps {
+  post: Post
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const slugs = getAllLinkedInPostSlugs()
+  const slugs = getAllPostSlugs()
   return {
     paths: slugs.map((slug) => ({ params: { slug } })),
     fallback: false,
   }
 }
 
-export const getStaticProps: GetStaticProps<LinkedInPostPageProps> = async ({
+export const getStaticProps: GetStaticProps<PostPageProps> = async ({
   params,
 }) => {
   const slug = params?.slug as string
-  const post = await getLinkedInPostBySlug(slug)
+  const post = await getPostBySlug(slug)
   if (!post) return { notFound: true }
   return { props: { post } }
 }
 
-export default function LinkedInPostPage({
-  post,
-}: LinkedInPostPageProps): JSX.Element {
-  const pageUrl = `${SITE_URL}/linkedin/${post.slug}`
+export default function PostPage({ post }: PostPageProps): JSX.Element {
+  const pageUrl = `${SITE_URL}/posts/${post.slug}`
   const description = post.excerpt || post.title
 
   const jsonLd = {
@@ -72,9 +67,9 @@ export default function LinkedInPostPage({
       </Head>
 
       <Box mt="20" maxWidth="700px" width="100%">
-        <NextLink href="/linkedin">
+        <NextLink href="/posts">
           <Text color="link" mb="6">
-            ← Back to LinkedIn posts
+            ← Back to posts
           </Text>
         </NextLink>
 
@@ -102,7 +97,7 @@ export default function LinkedInPostPage({
           <Box
             mt="8"
             mb="8"
-            className="linkedin-post-content"
+            className="post-content"
             dangerouslySetInnerHTML={{ __html: post.contentHtml }}
           />
 

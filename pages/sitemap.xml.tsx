@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
-import { getAllLinkedInPostSlugs } from '../lib/linkedin-posts'
+import { getAllPostSlugs } from '../lib/posts'
 import { SITE_URL } from '../lib/site'
 
-const STATIC_ROUTES = ['', '/about', '/contact', '/cv', '/linkedin']
+const STATIC_ROUTES = ['', '/about', '/contact', '/cv', '/posts']
 
 function buildSitemap(urls: string[]): string {
   const urlEntries = urls
@@ -13,7 +13,7 @@ function buildSitemap(urls: string[]): string {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const postUrls = getAllLinkedInPostSlugs().map((slug) => `/linkedin/${slug}`)
+  const postUrls = getAllPostSlugs().map((slug) => `/posts/${slug}`)
   const sitemap = buildSitemap([...STATIC_ROUTES, ...postUrls])
 
   res.setHeader('Content-Type', 'application/xml')

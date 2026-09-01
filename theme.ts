@@ -30,14 +30,14 @@ const config = defineConfig({
       color: 'link',
       borderColor: 'link',
     },
-    '.linkedin-post-content': {
+    '.post-content': {
       lineHeight: '1.7',
       wordBreak: 'break-word',
     },
-    '.linkedin-post-content p': {
+    '.post-content p': {
       marginBottom: '1em',
     },
-    '.linkedin-post-content a': {
+    '.post-content a': {
       textDecoration: 'underline',
     },
   },

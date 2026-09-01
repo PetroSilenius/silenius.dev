@@ -3,35 +3,33 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import NextLink from 'next/link'
 import { Box, Heading, HStack, Link, Stack, Tag, Text } from '@chakra-ui/react'
-import { getAllLinkedInPosts } from '../../lib/linkedin-posts'
-import type { LinkedInPostMeta } from '../../lib/linkedin-posts'
+import { getAllPosts } from '../../lib/posts'
+import type { PostMeta } from '../../lib/posts'
 import { formatPostDate } from '../../lib/format-date'
 import { SITE_URL } from '../../lib/site'
 
-interface LinkedInIndexProps {
-  posts: LinkedInPostMeta[]
+interface PostsIndexProps {
+  posts: PostMeta[]
 }
 
-export const getStaticProps: GetStaticProps<LinkedInIndexProps> = async () => {
-  const posts = getAllLinkedInPosts()
+export const getStaticProps: GetStaticProps<PostsIndexProps> = async () => {
+  const posts = getAllPosts()
   return { props: { posts } }
 }
 
-export default function LinkedInIndex({
-  posts,
-}: LinkedInIndexProps): JSX.Element {
+export default function PostsIndex({ posts }: PostsIndexProps): JSX.Element {
   const description =
-    "A searchable archive of Petro Silenius's LinkedIn posts, reposted here for easy reading."
+    "A searchable archive of Petro Silenius's posts, reposted here for easy reading."
 
   return (
     <>
       <Head>
-        <title>LinkedIn Posts - Petro Silenius</title>
+        <title>Posts - Petro Silenius</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={`${SITE_URL}/linkedin`} />
-        <meta property="og:title" content="LinkedIn Posts - Petro Silenius" />
+        <link rel="canonical" href={`${SITE_URL}/posts`} />
+        <meta property="og:title" content="Posts - Petro Silenius" />
         <meta property="og:description" content={description} />
-        <meta property="og:url" content={`${SITE_URL}/linkedin`} />
+        <meta property="og:url" content={`${SITE_URL}/posts`} />
         <meta property="og:type" content="website" />
       </Head>
 
@@ -43,7 +41,7 @@ export default function LinkedInIndex({
         </NextLink>
 
         <Heading as="h1" size="2xl" mb="3">
-          LinkedIn Posts
+          Posts
         </Heading>
         <Text mb="10" color="fg.muted">
           A repost of what I share on{' '}
@@ -72,7 +70,7 @@ export default function LinkedInIndex({
               borderColor="gray.200"
             >
               <Link asChild>
-                <NextLink href={`/linkedin/${post.slug}`}>
+                <NextLink href={`/posts/${post.slug}`}>
                   <Heading as="h2" size="lg">
                     {post.title}
                   </Heading>

@@ -1,13 +1,13 @@
 ---
 name: linkedin-post-import
-description: Converts a LinkedIn post (pasted text, or fetched from a LinkedIn URL) into a Markdown file under content/linkedin/ for the site's /linkedin blog. Use whenever the user asks to import, repost, add, or sync a LinkedIn post onto the site.
+description: Converts a LinkedIn post (pasted text, or fetched from a LinkedIn URL) into a Markdown file under content/posts/ for the site's /posts blog. Use whenever the user asks to import, repost, add, or sync a LinkedIn post onto the site.
 ---
 
 # LinkedIn post import
 
-This site reposts the user's LinkedIn posts as indexable pages at `/linkedin`
-and `/linkedin/[slug]`. Posts live as Markdown files in `content/linkedin/`
-and are read at build time by `lib/linkedin-posts.ts`. This skill turns raw
+This site reposts the user's LinkedIn posts as indexable pages at `/posts`
+and `/posts/[slug]`. Posts live as Markdown files in `content/posts/`
+and are read at build time by `lib/posts.ts`. This skill turns raw
 LinkedIn post content into a correctly formatted file in that directory.
 
 ## Getting the source content
@@ -25,7 +25,7 @@ you, don't rewrite it.
 One file per post, at:
 
 ```
-content/linkedin/YYYY-MM-DD-slug.md
+content/posts/YYYY-MM-DD-slug.md
 ```
 
 - `YYYY-MM-DD` is the post's publish date. Ask the user if it isn't given or
@@ -62,7 +62,7 @@ excerpt: 'One or two sentences summarizing the post, used in listings and meta d
   hashtags, use an empty array `[]`.
 - **excerpt**: A concise 1-2 sentence summary (roughly under 200 characters),
   usually the post's opening line with emoji stripped. This is shown on the
-  `/linkedin` listing page and used as the page's meta description, so it
+  `/posts` listing page and used as the page's meta description, so it
   should read well out of context.
 
 ## Body content
@@ -90,9 +90,9 @@ frontmatter rules above for each.
 
 ## After writing the file(s)
 
-- Reuse `content/linkedin/2025-01-15-example-post.md` as a reference for the
+- Reuse `content/posts/2025-01-15-example-post.md` as a reference for the
   expected shape — check it if unsure about formatting, and feel free to
   delete it once real posts exist.
 - Confirm to the user which file(s) were created and remind them the post
-  will appear at `/linkedin` and `/linkedin/<slug>` once the site is
+  will appear at `/posts` and `/posts/<slug>` once the site is
   rebuilt/deployed. Don't run the build yourself unless asked.
