@@ -30,6 +30,16 @@ const config = defineConfig({
       color: 'link',
       borderColor: 'link',
     },
+    '.post-content': {
+      lineHeight: '1.7',
+      wordBreak: 'break-word',
+    },
+    '.post-content p': {
+      marginBottom: '1em',
+    },
+    '.post-content a': {
+      textDecoration: 'underline',
+    },
   },
 })
 

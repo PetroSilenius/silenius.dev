@@ -8,6 +8,7 @@ import {
   GitHub,
   CreditCard,
   AlignCenter,
+  AlignLeft,
   Layers,
 } from 'react-feather'
 
@@ -71,7 +72,13 @@ export default function Home(): JSX.Element {
           </Heading>
           <Text>Check out my business card and generate one for yourself!</Text>
         </Card>
-        <Card href="/projects" gridColumn="span 2">
+        <Card href="/posts">
+          <Heading as="h2" size="xl" display="flex">
+            Posts <AlignLeft style={{ marginLeft: '10px' }} />
+          </Heading>
+          <Text>Posts where I share my thoughts, right here.</Text>
+        </Card>
+        <Card href="/projects">
           <Heading as="h2" size="xl" display="flex">
             Projects <Layers style={{ marginLeft: '10px' }} />
           </Heading>
