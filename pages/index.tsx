@@ -9,6 +9,7 @@ import {
   CreditCard,
   AlignCenter,
   AlignLeft,
+  Layers,
 } from 'react-feather'
 
 export default function Home(): JSX.Element {
@@ -76,6 +77,16 @@ export default function Home(): JSX.Element {
             Posts <AlignLeft style={{ marginLeft: '10px' }} />
           </Heading>
           <Text>Posts where I share my thoughts, right here.</Text>
+        </Card>
+        <Card href="/projects" gridColumn="span 2">
+          <Heading as="h2" size="xl" display="flex">
+            Projects <Layers style={{ marginLeft: '10px' }} />
+          </Heading>
+          <Text>
+            {
+              "Browse the projects I've pinned on GitHub, told in their own words."
+            }
+          </Text>
         </Card>
       </SimpleGrid>
     </>
