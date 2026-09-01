@@ -1,6 +1,5 @@
 import type { JSX } from 'react'
 import { GetStaticProps } from 'next'
-import Head from 'next/head'
 import NextLink from 'next/link'
 import {
   Box,
@@ -12,10 +11,10 @@ import {
   Tag,
   Text,
 } from '@chakra-ui/react'
+import { SEO } from '../../components'
 import { getAllPosts } from '../../lib/posts'
 import type { PostMeta } from '../../lib/posts'
 import { formatPostDate } from '../../lib/format-date'
-import { SITE_URL } from '../../lib/site'
 
 interface PostsIndexProps {
   posts: PostMeta[]
@@ -32,15 +31,11 @@ export default function PostsIndex({ posts }: PostsIndexProps): JSX.Element {
 
   return (
     <>
-      <Head>
-        <title>Posts - Petro Silenius</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={`${SITE_URL}/posts`} />
-        <meta property="og:title" content="Posts - Petro Silenius" />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={`${SITE_URL}/posts`} />
-        <meta property="og:type" content="website" />
-      </Head>
+      <SEO
+        title="Posts - Petro Silenius"
+        description={description}
+        path="/posts"
+      />
 
       <Box mt="20" maxWidth="700px" width="100%">
         <Heading as="h1" size="2xl" mb="3">
