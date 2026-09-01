@@ -90,9 +90,8 @@ frontmatter rules above for each.
 
 ## After writing the file(s)
 
-- Reuse `content/posts/2025-01-15-example-post.md` as a reference for the
-  expected shape — check it if unsure about formatting, and feel free to
-  delete it once real posts exist.
+- Check an existing file under `content/posts/` as a reference for the
+  expected shape if unsure about formatting.
 - Confirm to the user which file(s) were created and remind them the post
   will appear at `/posts` and `/posts/<slug>` once the site is
   rebuilt/deployed. Don't run the build yourself unless asked.
