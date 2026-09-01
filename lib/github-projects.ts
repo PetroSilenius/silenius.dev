@@ -10,10 +10,17 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN
 
 // Used when GitHub can't be reached at build time, so a network hiccup shows a
 // hand-picked selection instead of an empty page.
-const FALLBACK_PINNED = ['docsalike', 'accessor', 'assist-ukranians']
+const FALLBACK_PINNED = [
+  'DigitKoodit/UrhoMatti',
+  'PetroSilenius/docsalike',
+  'PetroSilenius/accessor',
+  'aleksivaisanen/resmeat',
+  'PetroSilenius/assist-ukranians',
+]
 
 export interface Project {
-  name: string
+  fullName: string
+  owner: string
   title: string
   summary: string[]
   imageUrl: string | null
@@ -24,8 +31,12 @@ export interface Project {
   language: string | null
 }
 
-interface RepoMeta {
+interface RepoRef {
+  owner: string
   name: string
+}
+
+interface RepoMeta extends RepoRef {
   description: string | null
   homepage: string | null
   language: string | null
@@ -40,6 +51,9 @@ const PINNED_QUERY = `query PinnedRepositories($login: String!, $limit: Int!) {
       nodes {
         ... on Repository {
           name
+          owner {
+            login
+          }
           description
           homepageUrl
           stargazerCount
@@ -64,6 +78,7 @@ const PINNED_QUERY = `query PinnedRepositories($login: String!, $limit: Int!) {
 
 interface GraphQlRepository {
   name: string
+  owner: { login: string }
   description: string | null
   homepageUrl: string | null
   stargazerCount: number
@@ -96,6 +111,7 @@ async function fetchPinnedFromApi(): Promise<RepoMeta[] | null> {
 
     return nodes.map((node) => ({
       name: node.name,
+      owner: node.owner.login,
       description: node.description,
       homepage: node.homepageUrl,
       language: node.primaryLanguage?.name ?? null,
@@ -114,9 +130,11 @@ async function fetchPinnedFromApi(): Promise<RepoMeta[] | null> {
 
 /**
  * Pinned repositories are only exposed through the authenticated GraphQL API, so
- * without a token we read the same list off the public profile page.
+ * without a token we read the same list off the public profile page. Pins can
+ * point at repositories in other accounts, so the owner is read per pin rather
+ * than assumed.
  */
-async function scrapePinnedNames(): Promise<string[]> {
+async function scrapePinnedRepos(): Promise<RepoRef[]> {
   try {
     const response = await fetch(`https://github.com/${GITHUB_USER}`, {
       headers: { Accept: 'text/html' },
@@ -128,11 +146,14 @@ async function scrapePinnedNames(): Promise<string[]> {
     if (!list) return []
 
     const links = list[1].matchAll(
-      new RegExp(`href="/${GITHUB_USER}/([^"/?#]+)"`, 'gi'),
+      /href="\/([A-Za-z0-9_.-]+)\/([A-Za-z0-9_.-]+)"/g,
     )
-    const names = Array.from(links, (match) => match[1])
+    const refs = Array.from(links, (match) => ({
+      owner: match[1],
+      name: match[2],
+    }))
 
-    return Array.from(new Set(names)).slice(0, PINNED_LIMIT)
+    return dedupeRefs(refs).slice(0, PINNED_LIMIT)
   } catch (error) {
     console.warn(
       'Could not read pinned repositories from the profile page',
@@ -142,10 +163,29 @@ async function scrapePinnedNames(): Promise<string[]> {
   }
 }
 
-async function fetchRepoMeta(name: string): Promise<RepoMeta | null> {
+function dedupeRefs(refs: RepoRef[]): RepoRef[] {
+  const seen = new Set<string>()
+  return refs.filter((ref) => {
+    const key = toFullName(ref).toLowerCase()
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+function toFullName({ owner, name }: RepoRef): string {
+  return `${owner}/${name}`
+}
+
+function parseFullName(fullName: string): RepoRef {
+  const [owner, name] = fullName.split('/')
+  return { owner, name }
+}
+
+async function fetchRepoMeta(ref: RepoRef): Promise<RepoMeta | null> {
   try {
     const response = await fetch(
-      `https://api.github.com/repos/${GITHUB_USER}/${name}`,
+      `https://api.github.com/repos/${toFullName(ref)}`,
       {
         headers: {
           Accept: 'application/vnd.github+json',
@@ -158,6 +198,7 @@ async function fetchRepoMeta(name: string): Promise<RepoMeta | null> {
     const repo = await response.json()
     return {
       name: repo.name,
+      owner: repo.owner?.login ?? ref.owner,
       description: repo.description ?? null,
       homepage: repo.homepage || null,
       language: repo.language ?? null,
@@ -166,13 +207,16 @@ async function fetchRepoMeta(name: string): Promise<RepoMeta | null> {
       defaultBranch: repo.default_branch ?? null,
     }
   } catch (error) {
-    console.warn(`Could not read repository details for ${name}`, error)
+    console.warn(
+      `Could not read repository details for ${toFullName(ref)}`,
+      error,
+    )
     return null
   }
 }
 
 async function fetchReadme(
-  name: string,
+  ref: RepoRef,
   defaultBranch: string | null,
 ): Promise<{ markdown: string; branch: string } | null> {
   const branches = Array.from(
@@ -182,12 +226,12 @@ async function fetchReadme(
   for (const branch of branches) {
     try {
       const response = await fetch(
-        `https://raw.githubusercontent.com/${GITHUB_USER}/${name}/${branch}/README.md`,
+        `https://raw.githubusercontent.com/${toFullName(ref)}/${branch}/README.md`,
       )
       if (!response.ok) continue
       return { markdown: await response.text(), branch }
     } catch (error) {
-      console.warn(`Could not read the README of ${name}`, error)
+      console.warn(`Could not read the README of ${toFullName(ref)}`, error)
     }
   }
 
@@ -200,10 +244,10 @@ function prettifyName(name: string): string {
 }
 
 async function toProject(meta: RepoMeta): Promise<Project> {
-  const readme = await fetchReadme(meta.name, meta.defaultBranch)
+  const readme = await fetchReadme(meta, meta.defaultBranch)
   const content = readme
     ? parseReadme(readme.markdown, {
-        owner: GITHUB_USER,
+        owner: meta.owner,
         repo: meta.name,
         branch: readme.branch,
       })
@@ -224,11 +268,12 @@ async function toProject(meta: RepoMeta): Promise<Project> {
         : []
 
   return {
-    name: meta.name,
+    fullName: toFullName(meta),
+    owner: meta.owner,
     title: content?.title ?? prettifyName(meta.name),
     summary,
     imageUrl: content?.imageUrl ?? null,
-    repoUrl: `https://github.com/${GITHUB_USER}/${meta.name}`,
+    repoUrl: `https://github.com/${toFullName(meta)}`,
     liveUrl: content?.liveUrl ?? meta.homepage,
     tech,
     stars: meta.stars,
@@ -236,9 +281,9 @@ async function toProject(meta: RepoMeta): Promise<Project> {
   }
 }
 
-function toMinimalMeta(name: string): RepoMeta {
+function toMinimalMeta(ref: RepoRef): RepoMeta {
   return {
-    name,
+    ...ref,
     description: null,
     homepage: null,
     language: null,
@@ -252,23 +297,18 @@ async function getPinnedRepos(): Promise<RepoMeta[]> {
   const fromApi = await fetchPinnedFromApi()
   if (fromApi?.length) return fromApi
 
-  const scraped = await scrapePinnedNames()
-  const names = scraped.length ? scraped : FALLBACK_PINNED
+  const scraped = await scrapePinnedRepos()
+  const refs = scraped.length ? scraped : FALLBACK_PINNED.map(parseFullName)
 
-  const repos = await Promise.all(
-    names.map(
-      async (name) => (await fetchRepoMeta(name)) ?? toMinimalMeta(name),
-    ),
+  return Promise.all(
+    refs.map(async (ref) => (await fetchRepoMeta(ref)) ?? toMinimalMeta(ref)),
   )
-
-  return repos
 }
 
 /** Reads the pinned repositories and turns each README into showcase copy. */
 export async function getProjects(): Promise<Project[]> {
   const repos = await getPinnedRepos()
-  const projects = await Promise.all(repos.map(toProject))
-
-  // A repository with nothing to say about itself has no place in a showcase.
-  return projects.filter((project) => project.summary.length > 0)
+  return Promise.all(repos.map(toProject))
 }
+
+export { GITHUB_USER }

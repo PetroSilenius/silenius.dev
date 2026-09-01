@@ -45,16 +45,6 @@ export default function Home(): JSX.Element {
       </Heading>
 
       <SimpleGrid columns={2} gap={6} maxWidth="800px" marginY={8}>
-        <Card href="/projects" gridColumn="span 2">
-          <Heading as="h2" size="xl" display="flex">
-            Projects <Layers style={{ marginLeft: '10px' }} />
-          </Heading>
-          <Text>
-            {
-              "Browse the projects I've pinned on GitHub, told in their own words."
-            }
-          </Text>
-        </Card>
         <Card href="/about">
           <Heading as="h2" size="xl" display="flex">
             About <AlignCenter style={{ marginLeft: '10px' }} />
@@ -80,6 +70,16 @@ export default function Home(): JSX.Element {
             Business card <CreditCard style={{ marginLeft: '10px' }} />
           </Heading>
           <Text>Check out my business card and generate one for yourself!</Text>
+        </Card>
+        <Card href="/projects" gridColumn="span 2">
+          <Heading as="h2" size="xl" display="flex">
+            Projects <Layers style={{ marginLeft: '10px' }} />
+          </Heading>
+          <Text>
+            {
+              "Browse the projects I've pinned on GitHub, told in their own words."
+            }
+          </Text>
         </Card>
       </SimpleGrid>
     </>

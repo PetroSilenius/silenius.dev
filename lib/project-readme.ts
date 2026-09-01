@@ -27,6 +27,8 @@ const BOILERPLATE_SECTIONS = [
   'development server',
   'environment variables',
   'getting started',
+  'how to run',
+  'how to use',
   'installation',
   'install',
   'learn more',
@@ -36,6 +38,7 @@ const BOILERPLATE_SECTIONS = [
   'roadmap',
   'quick start',
   'requirements',
+  'run locally',
   'running',
   'running locally',
   'scripts',
@@ -69,6 +72,18 @@ const TEMPLATE_PATTERNS = [
   /welcome to your .{0,30}template/i,
   /this template is your blank canvas/i,
 ]
+
+// Lines that only point at the live site, which the card links to anyway.
+const CALL_TO_ACTION_PATTERNS = [
+  /^available (at|on|in|from)\b/i,
+  /^(the )?live (demo|site|version|app)\b/i,
+  /^download it (on|from)\b/i,
+  /^(you can )?(find|try) it (out )?(at|on|from)\b/i,
+]
+
+function isCallToAction(text: string): boolean {
+  return CALL_TO_ACTION_PATTERNS.some((pattern) => pattern.test(text))
+}
 
 function isTemplateCopy(text: string): boolean {
   return TEMPLATE_PATTERNS.some((pattern) => pattern.test(text))
@@ -177,6 +192,10 @@ function linkOnlyUrl(block: string): string | null {
   return match?.[1] ?? null
 }
 
+function firstLinkUrl(block: string): string | null {
+  return block.match(/\[[^\]]*\]\(\s*([^)\s]+)/)?.[1] ?? null
+}
+
 function collectListItems(lines: string[]): string[] {
   return lines
     .filter((line) => /^\s*[-*+]\s+/.test(line))
@@ -271,9 +290,14 @@ export function parseReadme(
         continue
       }
       const text = toPlainText(block)
-      // "Available at …" style lines duplicate the live-site link on the card.
-      if (!text || /^(available at|download it on|live at)/i.test(text))
+      if (!text) continue
+      // "Available at …" style lines duplicate the live-site link on the card,
+      // so the link is kept and the line itself dropped.
+      if (isCallToAction(text)) {
+        const url = firstLinkUrl(block)
+        if (url) linkCandidates.push(url)
         continue
+      }
       if (isTemplateCopy(text)) continue
       summary.push(truncate(text, MAX_SUMMARY_LENGTH))
     }

@@ -42,7 +42,7 @@ export default function Projects({ projects }: ProjectsProps): JSX.Element {
         {projects.length > 0 ? (
           <Stack gap={8}>
             {projects.map((project) => (
-              <ProjectCard key={project.name} project={project} />
+              <ProjectCard key={project.fullName} project={project} />
             ))}
           </Stack>
         ) : (
