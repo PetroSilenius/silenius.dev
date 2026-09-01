@@ -62,7 +62,7 @@ export default function Home(): JSX.Element {
           <Heading as="h2" size="xl" display="flex">
             GitHub <GitHub style={{ marginLeft: '10px' }} />
           </Heading>
-          <Text>My freetime projects and courses.</Text>
+          <Text>My code and open source contributions.</Text>
         </Card>
         <Card href="/contact">
           <Heading as="h2" size="xl" display="flex">
@@ -74,13 +74,13 @@ export default function Home(): JSX.Element {
           <Heading as="h2" size="xl" display="flex">
             Posts <AlignLeft style={{ marginLeft: '10px' }} />
           </Heading>
-          <Text>Thoughts I share here.</Text>
+          <Text>{"Writing on things I'm learning."}</Text>
         </Card>
         <Card href="/projects">
           <Heading as="h2" size="xl" display="flex">
             Projects <Layers style={{ marginLeft: '10px' }} />
           </Heading>
-          <Text>Projects pinned on GitHub.</Text>
+          <Text>A closer look at my favorite projects.</Text>
         </Card>
       </SimpleGrid>
     </>
