@@ -68,7 +68,7 @@ export default function Home(): JSX.Element {
           <Heading as="h2" size="xl" display="flex">
             Business card <CreditCard style={{ marginLeft: '10px' }} />
           </Heading>
-          <Text>Generate your own business card.</Text>
+          <Text>Check out my digital business card.</Text>
         </Card>
         <Card href="/posts">
           <Heading as="h2" size="xl" display="flex">
