@@ -2,7 +2,7 @@ import type { JSX } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import NextLink from 'next/link'
-import { Box, HStack, Heading, Link, Tag, Text } from '@chakra-ui/react'
+import { Box, HStack, Heading, Image, Link, Tag, Text } from '@chakra-ui/react'
 import { getAllPostSlugs, getPostBySlug } from '../../lib/posts'
 import type { Post } from '../../lib/posts'
 import { formatPostDate } from '../../lib/format-date'
@@ -84,6 +84,16 @@ export default function PostPage({ post }: PostPageProps): JSX.Element {
             </Text>
           )}
 
+          {post.image && (
+            <Image
+              src={post.image}
+              alt={post.imageAlt || post.title}
+              borderRadius="lg"
+              mt="6"
+              width="100%"
+            />
+          )}
+
           {post.tags.length > 0 && (
             <HStack mt="3" gap="2" wrap="wrap">
               {post.tags.map((tag) => (
@@ -103,7 +113,13 @@ export default function PostPage({ post }: PostPageProps): JSX.Element {
 
           {post.url && (
             <Text mb="12">
-              <Link href={post.url} target="_blank" rel="noopener noreferrer">
+              <Link
+                href={post.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                color="link"
+                textDecoration="underline"
+              >
                 View the original post on LinkedIn
               </Link>
             </Text>

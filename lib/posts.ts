@@ -16,6 +16,8 @@ export interface PostMeta {
   url: string
   excerpt: string
   tags: string[]
+  image: string
+  imageAlt: string
 }
 
 export interface Post extends PostMeta {
@@ -50,6 +52,8 @@ function toPostMeta(
     url: data.url ?? '',
     excerpt: data.excerpt ?? '',
     tags: Array.isArray(data.tags) ? data.tags : [],
+    image: data.image ?? '',
+    imageAlt: data.imageAlt ?? '',
   }
 }
 

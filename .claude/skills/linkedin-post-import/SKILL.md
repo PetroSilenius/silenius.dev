@@ -46,6 +46,8 @@ date: 'YYYY-MM-DD'
 url: 'https://www.linkedin.com/posts/...'
 tags: ['tag-one', 'tag-two']
 excerpt: 'One or two sentences summarizing the post, used in listings and meta descriptions.'
+image: '/posts/YYYY-MM-DD-slug.jpg'
+imageAlt: 'Short description of the image, for accessibility.'
 ---
 ```
 
@@ -64,6 +66,15 @@ excerpt: 'One or two sentences summarizing the post, used in listings and meta d
   usually the post's opening line with emoji stripped. This is shown on the
   `/posts` listing page and used as the page's meta description, so it
   should read well out of context.
+- **image** / **imageAlt**: Optional. If the post had an image and the user
+  provides it (a local file, or a URL you can fetch), save it under
+  `public/posts/` (e.g. `public/posts/YYYY-MM-DD-slug.jpg`, matching the
+  post's own filename) and set `image` to that public path (e.g.
+  `/posts/YYYY-MM-DD-slug.jpg`). Write a short `imageAlt` describing the
+  image. LinkedIn does not expose post images to automated fetching the way
+  it does post text, so this almost always needs the user to supply the
+  image directly — don't guess an image URL or leave a broken one. Omit
+  both fields (or leave them empty) if there's no image.
 
 ## Body content
 

@@ -75,7 +75,7 @@ export default function Home(): JSX.Element {
           <Heading as="h2" size="xl" display="flex">
             Posts <AlignLeft style={{ marginLeft: '10px' }} />
           </Heading>
-          <Text>Read reposts of what I share on LinkedIn, right here.</Text>
+          <Text>Posts where I share my thoughts, right here.</Text>
         </Card>
       </SimpleGrid>
     </>

@@ -2,7 +2,16 @@ import type { JSX } from 'react'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import NextLink from 'next/link'
-import { Box, Heading, HStack, Link, Stack, Tag, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Heading,
+  HStack,
+  Image,
+  Link,
+  Stack,
+  Tag,
+  Text,
+} from '@chakra-ui/react'
 import { getAllPosts } from '../../lib/posts'
 import type { PostMeta } from '../../lib/posts'
 import { formatPostDate } from '../../lib/format-date'
@@ -19,7 +28,7 @@ export const getStaticProps: GetStaticProps<PostsIndexProps> = async () => {
 
 export default function PostsIndex({ posts }: PostsIndexProps): JSX.Element {
   const description =
-    "A searchable archive of Petro Silenius's posts, reposted here for easy reading."
+    'Posts where I share my thoughts, updates, and lessons learned.'
 
   return (
     <>
@@ -34,25 +43,22 @@ export default function PostsIndex({ posts }: PostsIndexProps): JSX.Element {
       </Head>
 
       <Box mt="20" maxWidth="700px" width="100%">
-        <NextLink href="/">
-          <Text color="link" mb="4">
-            ← Back to home
-          </Text>
-        </NextLink>
-
         <Heading as="h1" size="2xl" mb="3">
           Posts
         </Heading>
         <Text mb="10" color="fg.muted">
-          A repost of what I share on{' '}
+          Posts where I share my thoughts, updates, and lessons learned — also
+          posted on{' '}
           <Link
             href="https://www.linkedin.com/in/petrosilenius"
             target="_blank"
             rel="noopener noreferrer"
+            color="link"
+            textDecoration="underline"
           >
             LinkedIn
           </Link>
-          , kept here so it stays easy to find and read.
+          .
         </Text>
 
         {posts.length === 0 && (
@@ -69,6 +75,18 @@ export default function PostsIndex({ posts }: PostsIndexProps): JSX.Element {
               border="1px solid"
               borderColor="gray.200"
             >
+              {post.image && (
+                <Image
+                  src={post.image}
+                  alt={post.imageAlt || post.title}
+                  borderRadius="md"
+                  mb="4"
+                  width="100%"
+                  maxHeight="320px"
+                  objectFit="cover"
+                />
+              )}
+
               <Link asChild>
                 <NextLink href={`/posts/${post.slug}`}>
                   <Heading as="h2" size="lg">
