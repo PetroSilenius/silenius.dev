@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next'
 import { getAllPostSlugs } from '../lib/posts'
 import { SITE_URL } from '../lib/site'
 
-const STATIC_ROUTES = ['', '/about', '/contact', '/cv', '/posts']
+const STATIC_ROUTES = ['', '/about', '/contact', '/cv', '/posts', '/projects']
 
 function buildSitemap(urls: string[]): string {
   const urlEntries = urls
