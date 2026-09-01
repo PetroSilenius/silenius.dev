@@ -20,7 +20,7 @@ export default function Card(): JSX.Element {
       <BusinessCard
         imgSrc="/petro.png"
         name="Petro Silenius"
-        title="Frontend Developer"
+        title="CTO"
         borderColors={borderColorOptions[1]}
         github="petrosilenius"
         linkedin="petrosilenius"
