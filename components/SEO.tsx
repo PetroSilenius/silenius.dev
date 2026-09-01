@@ -14,7 +14,7 @@ export function SEO({
   title,
   description,
   path,
-  image = `${SITE_URL}/petro.png`,
+  image = `${SITE_URL}/og-image.jpg`,
   type = 'website',
 }: SEOProps): JSX.Element {
   const url = `${SITE_URL}${path}`

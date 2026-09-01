@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import NextLink from 'next/link'
 import { Box, HStack, Heading, Image, Link, Tag, Text } from '@chakra-ui/react'
+import { SEO } from '../../components'
 import { getAllPostSlugs, getPostBySlug } from '../../lib/posts'
 import type { Post } from '../../lib/posts'
 import { formatPostDate } from '../../lib/format-date'
@@ -49,14 +50,13 @@ export default function PostPage({ post }: PostPageProps): JSX.Element {
 
   return (
     <>
+      <SEO
+        title={`${post.title} - Petro Silenius`}
+        description={description}
+        path={`/posts/${post.slug}`}
+        type="article"
+      />
       <Head>
-        <title>{post.title} - Petro Silenius</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={pageUrl} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={pageUrl} />
-        <meta property="og:type" content="article" />
         {post.date && (
           <meta property="article:published_time" content={post.date} />
         )}
