@@ -4,7 +4,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { Box, Heading, Text, Stack } from '@chakra-ui/react'
+import { SEO } from '../components'
 import { getProfileBio, ProfileBio } from '../lib/github-readme'
+import { SITE_URL } from '../lib/site'
 
 interface AboutProps {
   bio: ProfileBio
@@ -16,13 +18,29 @@ export const getStaticProps: GetStaticProps<AboutProps> = async () => {
 }
 
 export default function About({ bio }: AboutProps): JSX.Element {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Petro Silenius',
+    url: SITE_URL,
+    sameAs: [
+      'https://github.com/petrosilenius',
+      'https://www.linkedin.com/in/petrosilenius',
+    ],
+    jobTitle: bio.role,
+  }
+
   return (
     <>
+      <SEO
+        title="About - Petro Silenius"
+        description="Introducing myself to everyone who's interested✌🏻"
+        path="/about"
+      />
       <Head>
-        <title>About - Petro Silenius</title>
-        <meta
-          name="description"
-          content="Introducing myself to everyone who's interested✌🏻"
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </Head>
 

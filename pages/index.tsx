@@ -1,7 +1,6 @@
 import type { JSX } from 'react'
-import Head from 'next/head'
 import Image from 'next/image'
-import { Card } from '../components'
+import { Card, SEO } from '../components'
 import { Heading, SimpleGrid, Text } from '@chakra-ui/react'
 import {
   Linkedin,
@@ -15,14 +14,12 @@ import {
 export default function Home(): JSX.Element {
   return (
     <>
-      <Head>
-        <title>Petro Silenius - Frontend Developer</title>
-        <meta
-          name="description"
-          content="🚀 Driving frontend development forward at a B2B SaaS company
+      <SEO
+        title="Petro Silenius - Frontend Developer"
+        description="🚀 Driving frontend development forward at a B2B SaaS company
         📚 Graduated Master of Technology as a 22-year old"
-        />
-      </Head>
+        path=""
+      />
 
       <Image
         priority

@@ -73,7 +73,7 @@ export default function PostsIndex({ posts }: PostsIndexProps): JSX.Element {
               padding={6}
               borderRadius="lg"
               border="1px solid"
-              borderColor="gray.200"
+              borderColor="border"
             >
               {post.image && (
                 <Image

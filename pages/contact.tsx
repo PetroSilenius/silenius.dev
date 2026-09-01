@@ -1,6 +1,5 @@
 import type { JSX } from 'react'
-import Head from 'next/head'
-import { BusinessCard } from '../components'
+import { BusinessCard, SEO } from '../components'
 
 const borderColorOptions = [
   'rgb(238,16,16), rgb(252,176,69)',
@@ -12,10 +11,11 @@ const borderColorOptions = [
 export default function Card(): JSX.Element {
   return (
     <>
-      <Head>
-        <title>Business Card - Petro Silenius</title>
-        <meta name="description" content="Contact information and resume" />
-      </Head>
+      <SEO
+        title="Business Card - Petro Silenius"
+        description="Contact information and resume"
+        path="/contact"
+      />
 
       <BusinessCard
         imgSrc="/petro.png"

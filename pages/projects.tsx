@@ -1,8 +1,7 @@
 import type { JSX } from 'react'
 import { GetStaticProps } from 'next'
-import Head from 'next/head'
 import { Box, Heading, Stack, Text } from '@chakra-ui/react'
-import { ProjectCard } from '../components'
+import { ProjectCard, SEO } from '../components'
 import { getProjects, Project } from '../lib/github-projects'
 
 interface ProjectsProps {
@@ -17,13 +16,11 @@ export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
 export default function Projects({ projects }: ProjectsProps): JSX.Element {
   return (
     <>
-      <Head>
-        <title>Projects - Petro Silenius</title>
-        <meta
-          name="description"
-          content="A showcase of the projects I've pinned on GitHub 🛠"
-        />
-      </Head>
+      <SEO
+        title="Projects - Petro Silenius"
+        description="A showcase of the projects I've pinned on GitHub 🛠"
+        path="/projects"
+      />
 
       {/* The layout centers its content, so the auto margin keeps a short list
           of projects anchored to the top of the page. */}
