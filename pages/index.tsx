@@ -15,8 +15,8 @@ export default function Home(): JSX.Element {
   return (
     <>
       <SEO
-        title="Petro Silenius - Frontend Developer"
-        description="🚀 Driving frontend development forward at a B2B SaaS company
+        title="Petro Silenius - CTO"
+        description="🚀 Driving technology strategy as CTO at a B2B SaaS company
         📚 Graduated Master of Technology as a 22-year old"
         path=""
       />
