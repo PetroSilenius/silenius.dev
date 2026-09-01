@@ -8,11 +8,15 @@ interface CardProps {
   children: JSX.Element | JSX.Element[]
 }
 
+const isExternalHref = (href: string): boolean => /^https?:\/\//.test(href)
+
 export const Card = ({
   href,
   gridColumn,
   children,
 }: CardProps): JSX.Element => {
+  const external = isExternalHref(href)
+
   return (
     <Link
       asChild
@@ -22,9 +26,15 @@ export const Card = ({
       padding={6}
       borderRadius="lg"
       border="1px solid"
-      borderColor="gray.200"
+      borderColor="border"
     >
-      <NextLink href={href}>{children}</NextLink>
+      {external ? (
+        <NextLink href={href} target="_blank" rel="noopener noreferrer">
+          {children}
+        </NextLink>
+      ) : (
+        <NextLink href={href}>{children}</NextLink>
+      )}
     </Link>
   )
 }

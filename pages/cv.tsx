@@ -1,17 +1,15 @@
 import type { JSX } from 'react'
-import Head from 'next/head'
 import { Box } from '@chakra-ui/react'
+import { SEO } from '../components'
 
 export default function Cv(): JSX.Element {
   return (
     <>
-      <Head>
-        <title>Resume - Petro Silenius</title>
-        <meta
-          name="description"
-          content="Resume describing Petro's experience and education"
-        />
-      </Head>
+      <SEO
+        title="Resume - Petro Silenius"
+        description="Resume describing Petro's experience and education"
+        path="/cv"
+      />
       <Box height="100vh" width="100vw">
         <iframe
           src="/Resume-Petro-Silenius.pdf"

@@ -27,7 +27,7 @@ export const ProjectCard = ({ project }: ProjectCardProps): JSX.Element => {
       as="article"
       borderRadius="lg"
       border="1px solid"
-      borderColor="gray.200"
+      borderColor="border"
       overflow="hidden"
     >
       {imageUrl && (
@@ -44,7 +44,7 @@ export const ProjectCard = ({ project }: ProjectCardProps): JSX.Element => {
           objectFit="cover"
           objectPosition="top"
           borderBottom="1px solid"
-          borderColor="gray.200"
+          borderColor="border"
         />
       )}
 
