@@ -50,43 +50,37 @@ export default function Home(): JSX.Element {
           <Heading as="h2" size="xl" display="flex">
             About <AlignCenter style={{ marginLeft: '10px' }} />
           </Heading>
-          <Text>{"Learn more about me and what I've been up to in life."}</Text>
+          <Text>Learn more about me.</Text>
         </Card>
         <Card href="https://www.linkedin.com/in/petrosilenius">
           <Heading as="h2" size="xl" display="flex">
             LinkedIn <Linkedin style={{ marginLeft: '10px' }} />
           </Heading>
-          <Text>Explore my work, education and volunteering history.</Text>
+          <Text>My work and education history.</Text>
         </Card>
         <Card href="https://github.com/petrosilenius">
           <Heading as="h2" size="xl" display="flex">
             GitHub <GitHub style={{ marginLeft: '10px' }} />
           </Heading>
-          <Text>
-            Discover some of my freetime projects and completed courses.
-          </Text>
+          <Text>My code and open source contributions.</Text>
         </Card>
         <Card href="/contact">
           <Heading as="h2" size="xl" display="flex">
             Business card <CreditCard style={{ marginLeft: '10px' }} />
           </Heading>
-          <Text>Check out my business card and generate one for yourself!</Text>
+          <Text>Check out my digital business card.</Text>
         </Card>
         <Card href="/posts">
           <Heading as="h2" size="xl" display="flex">
             Posts <AlignLeft style={{ marginLeft: '10px' }} />
           </Heading>
-          <Text>Posts where I share my thoughts, right here.</Text>
+          <Text>{"Writing on things I'm learning."}</Text>
         </Card>
         <Card href="/projects">
           <Heading as="h2" size="xl" display="flex">
             Projects <Layers style={{ marginLeft: '10px' }} />
           </Heading>
-          <Text>
-            {
-              "Browse the projects I've pinned on GitHub, told in their own words."
-            }
-          </Text>
+          <Text>A closer look at my favorite projects.</Text>
         </Card>
       </SimpleGrid>
     </>
