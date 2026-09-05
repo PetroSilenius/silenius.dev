@@ -31,6 +31,11 @@ const config = defineConfig({
         '0%': { opacity: '0', transform: 'translateY(18px)' },
         '100%': { opacity: '1', transform: 'translateY(0)' },
       },
+      // The sun/moon glyph spins into place when the theme flips.
+      'theme-icon-in': {
+        '0%': { opacity: '0', transform: 'rotate(-120deg) scale(0.4)' },
+        '100%': { opacity: '1', transform: 'rotate(0deg) scale(1)' },
+      },
       // Images earn a softer entrance: they resolve from a blur rather than
       // sliding, which keeps the eye on the subject.
       'blur-in': {
@@ -95,6 +100,22 @@ const config = defineConfig({
       animationDelay: 'var(--rise-delay, 0ms)',
       '@media (prefers-reduced-motion: reduce)': stillness,
     },
+
+    '.theme-icon': {
+      animation: 'theme-icon-in 0.42s var(--ease-out-strong) both',
+      '@media (prefers-reduced-motion: reduce)': stillness,
+    },
+
+    // The theme toggle wipes the new colours in as a circle grown from the
+    // button (see ThemeSwitch). The default cross-fade is turned off so the
+    // clip-path animation is the only thing moving, and the incoming snapshot
+    // has to sit on top of the outgoing one for the circle to read.
+    '::view-transition-old(root), ::view-transition-new(root)': {
+      animation: 'none',
+      mixBlendMode: 'normal',
+    },
+    '::view-transition-old(root)': { zIndex: 1 },
+    '::view-transition-new(root)': { zIndex: 2 },
 
     // Trailing icons inside a card drift outwards when the card is hovered.
     '.card-icon': {
