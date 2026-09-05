@@ -1,7 +1,7 @@
 import type { JSX } from 'react'
 import { GetStaticProps } from 'next'
 import { Box, Heading, Stack, Text } from '@chakra-ui/react'
-import { ProjectCard, SEO } from '../components'
+import { ProjectCard, Reveal, SEO } from '../components'
 import { getProjects, Project } from '../lib/github-projects'
 
 interface ProjectsProps {
@@ -25,7 +25,7 @@ export default function Projects({ projects }: ProjectsProps): JSX.Element {
       {/* The layout centers its content, so the auto margin keeps a short list
           of projects anchored to the top of the page. */}
       <Box mt="20" marginBottom="auto" pb="8" maxWidth="3xl" width="full">
-        <Stack gap={3} mb="8">
+        <Stack gap={3} mb="8" className="rise-in">
           <Heading as="h1" size="4xl">
             {"Things I've built"}
           </Heading>
@@ -38,8 +38,10 @@ export default function Projects({ projects }: ProjectsProps): JSX.Element {
 
         {projects.length > 0 ? (
           <Stack gap={8}>
-            {projects.map((project) => (
-              <ProjectCard key={project.fullName} project={project} />
+            {projects.map((project, index) => (
+              <Reveal key={project.fullName} delay={index * 80}>
+                <ProjectCard project={project} />
+              </Reveal>
             ))}
           </Stack>
         ) : (

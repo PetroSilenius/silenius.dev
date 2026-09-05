@@ -16,6 +16,14 @@ export default class Document extends NextDocument {
           />
         </Head>
         <body>
+          {/* Marks the document as motion-capable before first paint. The
+              scroll-reveal styles hang off this class, so a visitor without
+              JavaScript gets the content rather than an empty page. */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: "document.documentElement.classList.add('js-motion')",
+            }}
+          />
           <Main />
           <NextScript />
         </body>

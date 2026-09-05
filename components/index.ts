@@ -1,5 +1,6 @@
 export { BusinessCard } from './BusinessCard'
 export { Card } from './Card'
 export { ProjectCard } from './ProjectCard'
+export { Reveal } from './Reveal'
 export { SEO } from './SEO'
 export { ThemeSwitch } from './ThemeSwitch'

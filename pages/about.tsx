@@ -1,10 +1,10 @@
-import type { JSX } from 'react'
+import type { CSSProperties, JSX } from 'react'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import NextLink from 'next/link'
 import { Box, Heading, Text, Stack } from '@chakra-ui/react'
-import { SEO } from '../components'
+import { Reveal, SEO } from '../components'
 import { getProfileBio, ProfileBio } from '../lib/github-readme'
 import { SITE_URL } from '../lib/site'
 
@@ -44,7 +44,7 @@ export default function About({ bio }: AboutProps): JSX.Element {
         />
       </Head>
 
-      <Box mt="20">
+      <Box mt="20" className="blur-in">
         <Image
           priority
           src="/header.jpeg"
@@ -54,12 +54,17 @@ export default function About({ bio }: AboutProps): JSX.Element {
         />
       </Box>
 
-      <Box mt="14" textAlign="center">
+      <Box
+        mt="14"
+        textAlign="center"
+        className="rise-in"
+        style={{ '--rise-delay': '220ms' } as CSSProperties}
+      >
         <Text fontSize="lg">
           💻 {bio.role} @{bio.company}
         </Text>
       </Box>
-      <Box mt="6" mb="4" px="4" maxWidth="xl">
+      <Reveal mt="6" mb="4" px="4" maxWidth="xl" delay={320}>
         <Stack gap={3}>
           <Heading as="h2" size="xl">
             {bio.heading}
@@ -82,7 +87,7 @@ export default function About({ bio }: AboutProps): JSX.Element {
             </NextLink>
           </Text>
         </Stack>
-      </Box>
+      </Reveal>
     </>
   )
 }

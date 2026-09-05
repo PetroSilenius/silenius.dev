@@ -29,12 +29,22 @@ export const ProjectCard = ({ project }: ProjectCardProps): JSX.Element => {
       border="1px solid"
       borderColor="border"
       overflow="hidden"
+      transition="transform 0.24s var(--ease-out-strong), border-color 0.24s var(--ease-out-strong), box-shadow 0.24s var(--ease-out-strong)"
+      _hover={{
+        transform: 'translateY(-4px)',
+        borderColor: 'link',
+        boxShadow: 'md',
+      }}
+      // The screenshot creeps in a touch while the card is hovered.
+      css={{ '&:hover .project-shot': { transform: 'scale(1.03)' } }}
     >
       {imageUrl && (
         <Image
+          className="project-shot"
           src={imageUrl}
           alt={`Screenshot of ${title}`}
           loading="lazy"
+          transition="transform 0.5s var(--ease-out-strong)"
           onError={(event) => {
             // A rotten README image link should not leave a broken frame behind.
             event.currentTarget.style.display = 'none'
