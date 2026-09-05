@@ -40,7 +40,7 @@ export const BusinessCard = ({
   const iconHoverColor = borderColors.split(', ')[0]
 
   return (
-    <div className="business-card">
+    <div className="business-card blur-in">
       <SimpleGrid
         columns={2}
         padding={6}
@@ -128,6 +128,22 @@ export const BusinessCard = ({
             width: 90vw;
             max-width: 650px;
             padding-top: 56%;
+            transition:
+              transform 0.35s var(--ease-out-strong),
+              box-shadow 0.35s var(--ease-out-strong);
+          }
+          /* Picking the card up off the page on hover, the way a real one
+             would lift out of a wallet. */
+          .business-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px -24px rgba(5, 34, 91, 0.35);
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .business-card,
+            .business-card:hover {
+              transition: none;
+              transform: none;
+            }
           }
           .business-card:before {
             content: '';

@@ -1,9 +1,9 @@
-import type { JSX } from 'react'
+import type { CSSProperties, JSX } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import NextLink from 'next/link'
 import { Box, HStack, Heading, Image, Link, Tag, Text } from '@chakra-ui/react'
-import { SEO } from '../../components'
+import { Reveal, SEO } from '../../components'
 import { getAllPostSlugs, getPostBySlug } from '../../lib/posts'
 import type { Post } from '../../lib/posts'
 import { formatPostDate } from '../../lib/format-date'
@@ -74,18 +74,24 @@ export default function PostPage({ post }: PostPageProps): JSX.Element {
         </NextLink>
 
         <Box as="article">
-          <Heading as="h1" size="2xl" mb="2">
+          <Heading as="h1" size="2xl" mb="2" className="rise-in">
             {post.title}
           </Heading>
 
           {post.date && (
-            <Text fontSize="sm" color="fg.muted">
+            <Text
+              fontSize="sm"
+              color="fg.muted"
+              className="rise-in"
+              style={{ '--rise-delay': '110ms' } as CSSProperties}
+            >
               <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             </Text>
           )}
 
           {post.image && (
             <Image
+              className="blur-in"
               src={post.image}
               alt={post.imageAlt || post.title}
               borderRadius="lg"
@@ -104,12 +110,12 @@ export default function PostPage({ post }: PostPageProps): JSX.Element {
             </HStack>
           )}
 
-          <Box
-            mt="8"
-            mb="8"
-            className="post-content"
-            dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-          />
+          <Reveal mt="8" mb="8" delay={220}>
+            <Box
+              className="post-content"
+              dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+            />
+          </Reveal>
 
           {post.url && (
             <Text mb="12">

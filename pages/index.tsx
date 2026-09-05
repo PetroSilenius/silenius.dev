@@ -1,7 +1,7 @@
-import type { JSX } from 'react'
+import type { CSSProperties, JSX } from 'react'
 import Image from 'next/image'
-import { Card, SEO } from '../components'
-import { Heading, SimpleGrid, Text } from '@chakra-ui/react'
+import { Card, Reveal, SEO } from '../components'
+import { Box, Heading, SimpleGrid, Text } from '@chakra-ui/react'
 import {
   Linkedin,
   GitHub,
@@ -10,6 +10,47 @@ import {
   AlignLeft,
   Layers,
 } from 'react-feather'
+
+const iconStyle = { marginLeft: '10px' }
+
+const links = [
+  {
+    href: '/about',
+    label: 'About',
+    description: 'Learn more about me.',
+    Icon: AlignCenter,
+  },
+  {
+    href: 'https://www.linkedin.com/in/petrosilenius',
+    label: 'LinkedIn',
+    description: 'My work and education history.',
+    Icon: Linkedin,
+  },
+  {
+    href: 'https://github.com/petrosilenius',
+    label: 'GitHub',
+    description: 'My code and open source contributions.',
+    Icon: GitHub,
+  },
+  {
+    href: '/contact',
+    label: 'Business card',
+    description: 'Check out my digital business card.',
+    Icon: CreditCard,
+  },
+  {
+    href: '/posts',
+    label: 'Posts',
+    description: "Writing on things I'm learning.",
+    Icon: AlignLeft,
+  },
+  {
+    href: '/projects',
+    label: 'Projects',
+    description: 'A closer look at my favorite projects.',
+    Icon: Layers,
+  },
+]
 
 export default function Home(): JSX.Element {
   return (
@@ -21,64 +62,61 @@ export default function Home(): JSX.Element {
         path=""
       />
 
-      <Image
-        priority
-        src="/petro.png"
-        width="200"
-        height="200"
-        alt="Petro Silenius wearing a denim jacket and looks to the future"
-      />
+      {/* The hero arrives in reading order: portrait, name, then the grid. */}
+      <Box className="blur-in">
+        <Image
+          priority
+          src="/petro.png"
+          width="200"
+          height="200"
+          alt="Petro Silenius wearing a denim jacket and looks to the future"
+        />
+      </Box>
 
-      <Heading as="h1" size="5xl" className="title">
+      <Heading
+        as="h1"
+        size="5xl"
+        className="title rise-in"
+        style={{ '--rise-delay': '160ms' } as CSSProperties}
+      >
         Petro{' '}
         <Text
           as="span"
           color="link"
-          _hover={{ textDecoration: 'underline' }}
-          _active={{ textDecoration: 'underline' }}
-          _focus={{ textDecoration: 'underline' }}
+          position="relative"
+          display="inline-block"
+          // An underline that sweeps out from the left instead of blinking on.
+          _after={{
+            content: '""',
+            position: 'absolute',
+            left: 0,
+            bottom: '0.06em',
+            width: '100%',
+            height: '0.06em',
+            background: 'currentColor',
+            transform: 'scaleX(0)',
+            transformOrigin: 'left',
+            transition: 'transform 0.32s var(--ease-out-strong)',
+          }}
+          _hover={{ _after: { transform: 'scaleX(1)' } }}
+          _active={{ _after: { transform: 'scaleX(1)' } }}
+          _focus={{ _after: { transform: 'scaleX(1)' } }}
         >
           Silenius
         </Text>
       </Heading>
 
       <SimpleGrid columns={2} gap={6} maxWidth="800px" marginY={8}>
-        <Card href="/about">
-          <Heading as="h2" size="xl" display="flex">
-            About <AlignCenter style={{ marginLeft: '10px' }} />
-          </Heading>
-          <Text>Learn more about me.</Text>
-        </Card>
-        <Card href="https://www.linkedin.com/in/petrosilenius">
-          <Heading as="h2" size="xl" display="flex">
-            LinkedIn <Linkedin style={{ marginLeft: '10px' }} />
-          </Heading>
-          <Text>My work and education history.</Text>
-        </Card>
-        <Card href="https://github.com/petrosilenius">
-          <Heading as="h2" size="xl" display="flex">
-            GitHub <GitHub style={{ marginLeft: '10px' }} />
-          </Heading>
-          <Text>My code and open source contributions.</Text>
-        </Card>
-        <Card href="/contact">
-          <Heading as="h2" size="xl" display="flex">
-            Business card <CreditCard style={{ marginLeft: '10px' }} />
-          </Heading>
-          <Text>Check out my digital business card.</Text>
-        </Card>
-        <Card href="/posts">
-          <Heading as="h2" size="xl" display="flex">
-            Posts <AlignLeft style={{ marginLeft: '10px' }} />
-          </Heading>
-          <Text>{"Writing on things I'm learning."}</Text>
-        </Card>
-        <Card href="/projects">
-          <Heading as="h2" size="xl" display="flex">
-            Projects <Layers style={{ marginLeft: '10px' }} />
-          </Heading>
-          <Text>A closer look at my favorite projects.</Text>
-        </Card>
+        {links.map(({ href, label, description, Icon }, index) => (
+          <Reveal key={href} delay={320 + index * 70}>
+            <Card href={href}>
+              <Heading as="h2" size="xl" display="flex">
+                {label} <Icon className="card-icon" style={iconStyle} />
+              </Heading>
+              <Text>{description}</Text>
+            </Card>
+          </Reveal>
+        ))}
       </SimpleGrid>
     </>
   )
