@@ -1,7 +1,7 @@
 import type { CSSProperties, JSX } from 'react'
 import Image from 'next/image'
 import { Card, Reveal, SEO } from '../components'
-import { Box, Heading, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Link, SimpleGrid, Text } from '@chakra-ui/react'
 import {
   Linkedin,
   GitHub,
@@ -9,9 +9,10 @@ import {
   AlignCenter,
   AlignLeft,
   Layers,
+  ArrowUpRight,
 } from 'react-feather'
 
-const iconStyle = { marginLeft: '10px' }
+const iconStyle = { marginLeft: '8px', width: '18px', height: '18px' }
 
 const links = [
   {
@@ -106,14 +107,27 @@ export default function Home(): JSX.Element {
         </Text>
       </Heading>
 
-      <SimpleGrid columns={2} gap={6} maxWidth="800px" marginY={8}>
+      <Reveal delay={320} width="100%" maxWidth="800px" marginTop={8}>
+        <HireCard />
+      </Reveal>
+
+      <SimpleGrid
+        columns={{ base: 2, md: 3 }}
+        gap={{ base: 3, md: 4 }}
+        width="100%"
+        maxWidth="800px"
+        marginTop={{ base: 3, md: 4 }}
+        marginBottom={8}
+      >
         {links.map(({ href, label, description, Icon }, index) => (
-          <Reveal key={href} delay={320 + index * 70}>
+          <Reveal key={href} delay={390 + index * 70}>
             <Card href={href}>
-              <Heading as="h2" size="xl" display="flex">
+              <Heading as="h2" size="md" display="flex" alignItems="center">
                 {label} <Icon className="card-icon" style={iconStyle} />
               </Heading>
-              <Text>{description}</Text>
+              <Text fontSize="sm" color="fg.muted" marginTop={1}>
+                {description}
+              </Text>
             </Card>
           </Reveal>
         ))}
@@ -121,3 +135,70 @@ export default function Home(): JSX.Element {
     </>
   )
 }
+
+/**
+ * The one call to action on the page, so it gets a filled gradient instead of
+ * the outlined treatment the navigation cards share.
+ */
+const HireCard = (): JSX.Element => (
+  <Link
+    href="https://dataatti.io"
+    target="_blank"
+    rel="noopener noreferrer"
+    display="block"
+    borderRadius="xl"
+    padding={{ base: 5, md: 6 }}
+    color="white"
+    backgroundImage="linear-gradient(135deg, #0070f3 0%, #7b3fe4 100%)"
+    boxShadow="0 18px 40px -20px rgba(0, 112, 243, 0.7)"
+    transition="transform 0.22s var(--ease-out-strong), box-shadow 0.24s var(--ease-out-strong)"
+    _hover={{
+      color: 'white',
+      transform: 'translateY(-4px)',
+      boxShadow: '0 24px 48px -20px rgba(0, 112, 243, 0.85)',
+    }}
+    _focusVisible={{
+      color: 'white',
+      transform: 'translateY(-4px)',
+      outline: '2px solid',
+      outlineColor: 'link',
+      outlineOffset: '3px',
+    }}
+    _active={{ color: 'white', transform: 'translateY(-1px)' }}
+    css={{
+      '&:hover .card-icon, &:focus-visible .card-icon': {
+        transform: 'translate(3px, -3px)',
+      },
+    }}
+  >
+    <Flex align="center" justify="space-between" gap={4}>
+      <Box>
+        <Text
+          fontSize="xs"
+          fontWeight="semibold"
+          textTransform="uppercase"
+          letterSpacing="wider"
+          opacity={0.85}
+        >
+          Work with me
+        </Text>
+        <Heading as="h2" size={{ base: 'xl', md: '2xl' }} marginTop={1}>
+          Hire me through Dataatti
+        </Heading>
+        <Text marginTop={1} opacity={0.9}>
+          Software, data and AI projects via my own company.
+        </Text>
+      </Box>
+      <Flex
+        flexShrink={0}
+        align="center"
+        justify="center"
+        boxSize={{ base: 10, md: 12 }}
+        borderRadius="full"
+        background="whiteAlpha.300"
+      >
+        <ArrowUpRight className="card-icon" />
+      </Flex>
+    </Flex>
+  </Link>
+)
