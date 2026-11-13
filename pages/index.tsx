@@ -146,8 +146,9 @@ const HireCard = (): JSX.Element => (
     target="_blank"
     rel="noopener noreferrer"
     display="block"
-    borderRadius="xl"
-    padding={{ base: 5, md: 6 }}
+    borderRadius="lg"
+    paddingX={{ base: 4, md: 5 }}
+    paddingY={{ base: 3, md: 4 }}
     color="white"
     backgroundImage="linear-gradient(135deg, #0070f3 0%, #7b3fe4 100%)"
     boxShadow="0 18px 40px -20px rgba(0, 112, 243, 0.7)"
@@ -173,27 +174,18 @@ const HireCard = (): JSX.Element => (
   >
     <Flex align="center" justify="space-between" gap={4}>
       <Box>
-        <Text
-          fontSize="xs"
-          fontWeight="semibold"
-          textTransform="uppercase"
-          letterSpacing="wider"
-          opacity={0.85}
-        >
-          Work with me
-        </Text>
-        <Heading as="h2" size={{ base: 'xl', md: '2xl' }} marginTop={1}>
+        <Heading as="h2" size={{ base: 'lg', md: 'xl' }}>
           Hire me through Dataatti
         </Heading>
-        <Text marginTop={1} opacity={0.9}>
-          Software, data and AI projects via my own company.
+        <Text fontSize={{ base: 'sm', md: 'md' }} marginTop={1} opacity={0.9}>
+          Software, data and AI projects.
         </Text>
       </Box>
       <Flex
         flexShrink={0}
         align="center"
         justify="center"
-        boxSize={{ base: 10, md: 12 }}
+        boxSize={{ base: 8, md: 10 }}
         borderRadius="full"
         background="whiteAlpha.300"
       >

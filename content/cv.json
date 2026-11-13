@@ -5,15 +5,17 @@
   "location": "Turku Metropolitan Area, Finland",
   "contact": [
     {
-      "label": "petro.silenius@gmail.com",
-      "href": "mailto:petro.silenius@gmail.com"
-    },
-    {
+      "name": "LinkedIn",
       "label": "linkedin.com/in/petrosilenius",
       "href": "https://www.linkedin.com/in/petrosilenius"
     },
-    { "label": "silenius.dev", "href": "https://www.silenius.dev" },
     {
+      "name": "Website",
+      "label": "silenius.dev",
+      "href": "https://www.silenius.dev"
+    },
+    {
+      "name": "GitHub",
       "label": "github.com/PetroSilenius",
       "href": "https://github.com/PetroSilenius"
     }
@@ -28,7 +30,6 @@
     "Before Ruokaboksi I spent 4 years at Lyyti building B2B event tech, and set up Dataatti Oy to do some work on the side.",
     "Outside my day job I like talking shop and startups. I've spoken at Turku tech meetups about startup CTO life and what it actually means to be a \"Product Engineer\", and I run our annual company hackathon because good ideas shouldn't only happen in sprint planning. In my free time I cycle here and there, most recently on a Cube gravel bike. I'm also known for my scouting background, where I worked on projects such as a 40-person two-week all-inclusive camp in Italy."
   ],
-  "skills": ["Terraform", "Python", "Data Engineering"],
   "certifications": [
     "Kasvutarinat hyvään hallitustyöhön",
     "Event Success Management Certification"
@@ -126,5 +127,6 @@
       "degree": "High School Diploma",
       "period": "2014 – 2017"
     }
-  ]
+  ],
+  "photo": "/petro.png"
 }

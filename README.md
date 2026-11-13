@@ -10,7 +10,7 @@ The business card also links to my resume at [silenius.dev/cv](https://www.silen
 
 ## Updating the CV
 
-The CV lives in `content/cv.json`, copied over from a LinkedIn "Save to PDF" export. After editing it, regenerate the downloadable PDF from the page:
+The CV lives in `content/cv.json`, copied over from a LinkedIn "Save to PDF" export (leaving out the email and top skills). After editing it, regenerate the downloadable PDF from the page:
 
 ```bash
 yarn dev
