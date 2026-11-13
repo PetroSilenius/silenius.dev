@@ -1,0 +1,130 @@
+{
+  "updated": "2026-11",
+  "name": "Petro Silenius",
+  "headline": "CTO at Ruokaboksi / Yummy",
+  "location": "Turku Metropolitan Area, Finland",
+  "contact": [
+    {
+      "label": "petro.silenius@gmail.com",
+      "href": "mailto:petro.silenius@gmail.com"
+    },
+    {
+      "label": "linkedin.com/in/petrosilenius",
+      "href": "https://www.linkedin.com/in/petrosilenius"
+    },
+    { "label": "silenius.dev", "href": "https://www.silenius.dev" },
+    {
+      "label": "github.com/PetroSilenius",
+      "href": "https://github.com/PetroSilenius"
+    }
+  ],
+  "highlights": [
+    "Driving forward software and AI at Ruokaboksi / Yummy, a Finnish meal-kit service",
+    "Took the product from Finland into Estonia, Czechia and Slovakia",
+    "Making AI agents fit into real workflows"
+  ],
+  "summary": [
+    "I'm CTO at Ruokaboksi, a meal-kit subscription platform delivering easy, healthy and delicious meals weekly to your door. I joined as the first technical hire, moved our engineering in-house from external consultancies, and now lead a team of 4 great engineers alongside sitting on the management team.",
+    "Before Ruokaboksi I spent 4 years at Lyyti building B2B event tech, and set up Dataatti Oy to do some work on the side.",
+    "Outside my day job I like talking shop and startups. I've spoken at Turku tech meetups about startup CTO life and what it actually means to be a \"Product Engineer\", and I run our annual company hackathon because good ideas shouldn't only happen in sprint planning. In my free time I cycle here and there, most recently on a Cube gravel bike. I'm also known for my scouting background, where I worked on projects such as a 40-person two-week all-inclusive camp in Italy."
+  ],
+  "skills": ["Terraform", "Python", "Data Engineering"],
+  "certifications": [
+    "Kasvutarinat hyvään hallitustyöhön",
+    "Event Success Management Certification"
+  ],
+  "experience": [
+    {
+      "company": "Ruokaboksi",
+      "roles": [
+        {
+          "title": "Chief Technology Officer",
+          "period": "Mar 2025 – Present",
+          "location": "Turku, Finland",
+          "description": "Leading technology and AI at a meal-kit startup that focuses on delivering delicious, healthy, and easy-to-cook weekly meal plans to your doorstep. I drive and commit to the entire development lifecycle, from shaping feature specifications to guiding design, development, testing, and successful releases. I take pride in fostering a collaborative, efficient work environment with a flat hierarchy where every team member thrives. I participate in overall company decision-making and business operations as a member of the management team."
+        },
+        {
+          "title": "Lead Developer",
+          "period": "Mar 2023 – Mar 2025",
+          "location": "Turku, Finland"
+        }
+      ]
+    },
+    {
+      "company": "Dataatti Oy",
+      "roles": [
+        {
+          "title": "Founder",
+          "period": "Nov 2020 – Present",
+          "location": "Turku, Finland",
+          "description": "Dataatti offers modern and innovative takes on customer needs. We founded Dataatti with two of my university friends after winning a 10k€ hackathon and ended up doing a few projects for public and private organisations."
+        }
+      ]
+    },
+    {
+      "company": "P & P Silenius Oy",
+      "roles": [
+        {
+          "title": "IT Consultant",
+          "period": "Jun 2015 – Present",
+          "location": "Salo, Finland",
+          "description": "Creating and operating IT systems for a family business as well as assisting in business planning. Developed B2C websites for customer companies to boost their sales."
+        }
+      ]
+    },
+    {
+      "company": "Lyyti",
+      "roles": [
+        {
+          "title": "Senior Frontend Developer",
+          "period": "Dec 2022 – Mar 2023",
+          "location": "Turku, Finland",
+          "description": "Developed a B2B SaaS event management product. The last few years were spent in a big role in the technical rebuilding of the product and constantly onboarding new developers to the team. On top of daily development tasks I improved our engineering practices, organised events and figured out architecture level solutions to bigger features."
+        },
+        {
+          "title": "Frontend Developer",
+          "period": "Aug 2020 – Dec 2022",
+          "location": "Turku, Finland"
+        },
+        {
+          "title": "Interim Scrum Master",
+          "period": "Feb 2022 – Aug 2022",
+          "location": "Turku, Finland"
+        },
+        {
+          "title": "PM Thesis Worker",
+          "period": "Nov 2020 – Jan 2021",
+          "location": "Turku, Finland",
+          "description": "My Master's thesis was an assignment for Lyyti and mainly worked on user research practices to improve product management decisions. During it I created a model for executing and utilising user research in product development projects and documented those processes in practical guides."
+        },
+        {
+          "title": "Junior Frontend Developer",
+          "period": "May 2019 – Aug 2020",
+          "location": "Turku, Finland"
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "University of Turku",
+      "degree": "Master's Degree, Industrial Engineering and Management",
+      "period": "2024"
+    },
+    {
+      "school": "University of Turku",
+      "degree": "Master's Degree, Computer Software Engineering",
+      "period": "2020 – 2021"
+    },
+    {
+      "school": "University of Turku",
+      "degree": "Bachelor's Degree, Computer Software Engineering",
+      "period": "2017 – 2020"
+    },
+    {
+      "school": "Salon lukio",
+      "degree": "High School Diploma",
+      "period": "2014 – 2017"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Silenius;Petro;;;
+FN:Petro Silenius
+ORG:Ruokaboksi / Yummy
+TITLE:CTO
+EMAIL;TYPE=INTERNET:petro.silenius@gmail.com
+URL:https://www.silenius.dev
+URL:https://www.linkedin.com/in/petrosilenius
+URL:https://github.com/PetroSilenius
+ADR;TYPE=WORK:;;;Turku;;;Finland
+END:VCARD

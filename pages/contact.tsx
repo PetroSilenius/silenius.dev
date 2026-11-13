@@ -1,5 +1,6 @@
 import type { JSX } from 'react'
 import { BusinessCard, SEO } from '../components'
+import { SITE_URL } from '../lib/site'
 
 const borderColorOptions = [
   'rgb(238,16,16), rgb(252,176,69)',
@@ -25,6 +26,8 @@ export default function Card(): JSX.Element {
         github="petrosilenius"
         linkedin="petrosilenius"
         email="petro.silenius@gmail.com"
+        shareUrl={`${SITE_URL}/contact`}
+        vcardHref="/petro-silenius.vcf"
       />
     </>
   )

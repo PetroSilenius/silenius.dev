@@ -71,12 +71,8 @@ export const ThemeSwitch = (): JSX.Element | null => {
       .catch(() => {})
   }
 
-  if (route === '/cv') {
-    return null
-  }
-
   return (
-    <aside>
+    <aside className="no-print">
       {route !== '/' && (
         <Button
           asChild

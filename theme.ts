@@ -62,6 +62,7 @@ const config = defineConfig({
     html: {
       scrollBehavior: 'smooth',
       '@media (prefers-reduced-motion: reduce)': { scrollBehavior: 'auto' },
+      '@media print': { fontSize: '13px' },
     },
     a: { textDecoration: 'none' },
     'a:hover': {
@@ -135,6 +136,32 @@ const config = defineConfig({
         'opacity 0.6s var(--ease-out-strong), transform 0.7s var(--ease-out-strong), filter 0.6s var(--ease-out-strong)',
       transitionDelay: 'var(--rise-delay, 0ms)',
       '@media (prefers-reduced-motion: reduce)': stillness,
+    },
+    // Printing (and `yarn cv:pdf`) always gets ink on white, whatever theme
+    // the page was showing, with the screen-only chrome left off.
+    ':root, .dark': {
+      '@media print': {
+        colorScheme: 'light',
+        '--chakra-colors-bg': '#fff',
+        '--chakra-colors-fg': '#111',
+        '--chakra-colors-fg-muted': '#555',
+        '--chakra-colors-border': '#ddd',
+        '--chakra-colors-border-muted': '#e4e4e7',
+      },
+    },
+    body: { '@media print': { background: '#fff' } },
+    '.no-print': { '@media print': { display: 'none !important' } },
+    '.cv a': { '@media print': { color: 'inherit' } },
+    '.cv-entry > h3': { '@media print': { breakAfter: 'avoid' } },
+    '.cv-role': { '@media print': { breakInside: 'avoid' } },
+    '.cv': { '@media print': { padding: '0 !important' } },
+    '.cv-columns': {
+      '@media print': { flexDirection: 'row !important', gap: '32px' },
+    },
+    '.cv-main': { '@media print': { gap: '24px !important' } },
+    '.cv-header': { '@media print': { marginBottom: '24px !important' } },
+    '.cv-sidebar': {
+      '@media print': { flexBasis: '190px !important', flexShrink: 0 },
     },
     '.js-motion [data-reveal="shown"]': {
       opacity: '1',
