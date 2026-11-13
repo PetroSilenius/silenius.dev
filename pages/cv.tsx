@@ -1,4 +1,5 @@
 import type { JSX, ReactNode } from 'react'
+import Image from 'next/image'
 import {
   Box,
   Button,
@@ -72,15 +73,32 @@ export default function CvPage(): JSX.Element {
           marginBottom={10}
           className="cv-header"
         >
-          <Stack gap={1}>
-            <Heading as="h1" size={{ base: '3xl', md: '4xl' }}>
-              {cv.name}
-            </Heading>
-            <Text fontSize="lg">{cv.headline}</Text>
-            <Text color="fg.muted">
-              {cv.location} · Updated {formatUpdated(cv.updated)}
-            </Text>
-          </Stack>
+          <Flex align="center" gap={{ base: 4, md: 6 }}>
+            <Box
+              flexShrink={0}
+              width={{ base: '72px', md: '96px' }}
+              borderRadius="full"
+              overflow="hidden"
+              className="cv-photo"
+            >
+              <Image
+                priority
+                src={cv.photo}
+                width="200"
+                height="200"
+                alt={cv.name}
+              />
+            </Box>
+            <Stack gap={1}>
+              <Heading as="h1" size={{ base: '3xl', md: '4xl' }}>
+                {cv.name}
+              </Heading>
+              <Text fontSize="lg">{cv.headline}</Text>
+              <Text color="fg.muted">
+                {cv.location} · Updated {formatUpdated(cv.updated)}
+              </Text>
+            </Stack>
+          </Flex>
           <Button asChild variant="outline" className="no-print">
             <a href={CV_PDF_PATH} download>
               <Download /> Download PDF
@@ -106,15 +124,6 @@ export default function CvPage(): JSX.Element {
                   <Link key={href} href={href} wordBreak="break-word">
                     {label}
                   </Link>
-                ))}
-              </Stack>
-            </Section>
-            <Section title="Top skills">
-              <Stack as="ul" gap={1} listStyleType="none">
-                {cv.skills.map((skill) => (
-                  <Box as="li" key={skill}>
-                    {skill}
-                  </Box>
                 ))}
               </Stack>
             </Section>
