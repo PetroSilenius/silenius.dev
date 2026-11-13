@@ -154,14 +154,62 @@ const config = defineConfig({
     '.cv a': { '@media print': { color: 'inherit' } },
     '.cv-entry > h3': { '@media print': { breakAfter: 'avoid' } },
     '.cv-role': { '@media print': { breakInside: 'avoid' } },
-    '.cv': { '@media print': { padding: '0 !important' } },
-    '.cv-columns': {
-      '@media print': { flexDirection: 'row !important', gap: '32px' },
+    // The screen CV is a stack of cards; on paper it collapses to a plain
+    // document so it stays two pages.
+    '.cv': {
+      '@media print': {
+        padding: '0 !important',
+        gap: '20px !important',
+        maxWidth: 'none !important',
+      },
     },
-    '.cv-main': { '@media print': { gap: '24px !important' } },
-    '.cv-header': { '@media print': { marginBottom: '24px !important' } },
-    '.cv-sidebar': {
-      '@media print': { flexBasis: '190px !important', flexShrink: 0 },
+    '.cv [data-reveal]': {
+      '@media print': {
+        opacity: '1 !important',
+        transform: 'none !important',
+        filter: 'none !important',
+      },
+    },
+    '.cv-hero': {
+      '@media print': {
+        flexDirection: 'row !important',
+        alignItems: 'center !important',
+        textAlign: 'left !important',
+        gap: '20px !important',
+      },
+    },
+    '.cv-hero h1': { '@media print': { fontSize: '30px !important' } },
+    '.cv-photo': {
+      '@media print': {
+        width: '80px !important',
+        marginBottom: '0 !important',
+        animation: 'none !important',
+      },
+    },
+    '.cv-links': {
+      '@media print': {
+        gridTemplateColumns: 'repeat(3, max-content) !important',
+        columnGap: '24px !important',
+      },
+    },
+    '.cv-links a': {
+      '@media print': { padding: '0 !important', border: 'none !important' },
+    },
+    '.cv-links p': {
+      '@media print': {
+        marginTop: '0 !important',
+        color: 'inherit',
+        overflow: 'visible !important',
+        textOverflow: 'clip !important',
+      },
+    },
+    '.cv-section h2': { '@media print': { fontSize: '16px !important' } },
+    '.cv-panel': {
+      '@media print': {
+        padding: '0 !important',
+        border: 'none !important',
+        height: 'auto !important',
+      },
     },
     '.js-motion [data-reveal="shown"]': {
       opacity: '1',

@@ -1,42 +1,23 @@
-import type { JSX, ReactNode } from 'react'
+import type { CSSProperties, JSX, ReactNode } from 'react'
 import Image from 'next/image'
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Link,
-  Separator,
-  Stack,
-  Text,
-} from '@chakra-ui/react'
-import { Download } from 'react-feather'
-import { SEO } from '../components'
+import { Box, Flex, Heading, SimpleGrid, Stack, Text } from '@chakra-ui/react'
+import { Download, GitHub, Globe, Linkedin } from 'react-feather'
+import { Card, Reveal, SEO } from '../components'
 import cvData from '../content/cv.json'
 
 // Generated from this page by `yarn cv:pdf`.
 const CV_PDF_PATH = '/Resume-Petro-Silenius.pdf'
 
-const Section = ({
-  title,
-  children,
-}: {
-  title: string
-  children: ReactNode
-}): JSX.Element => (
-  <Stack as="section" gap={3} className="cv-section">
-    <Heading
-      as="h2"
-      size="sm"
-      textTransform="uppercase"
-      letterSpacing="wider"
-      color="fg.muted"
-    >
-      {title}
-    </Heading>
-    {children}
-  </Stack>
-)
+const iconStyle = { marginLeft: '8px', width: '18px', height: '18px' }
+
+const contactIcons: Record<string, typeof Linkedin> = {
+  'linkedin.com': Linkedin,
+  'github.com': GitHub,
+}
+
+const iconFor = (href: string): typeof Linkedin =>
+  Object.entries(contactIcons).find(([host]) => href.includes(host))?.[1] ??
+  Globe
 
 const formatUpdated = (yearMonth: string): string =>
   new Date(`${yearMonth}-01T00:00:00Z`).toLocaleDateString('en-GB', {
@@ -45,8 +26,46 @@ const formatUpdated = (yearMonth: string): string =>
     timeZone: 'UTC',
   })
 
+/** The outlined panel the home page cards use, without the link behaviour. */
+const Panel = ({ children }: { children: ReactNode }): JSX.Element => (
+  <Box
+    className="cv-panel"
+    height="100%"
+    padding={{ base: 4, md: 5 }}
+    borderRadius="lg"
+    border="1px solid"
+    borderColor="border"
+  >
+    {children}
+  </Box>
+)
+
+const Section = ({
+  title,
+  delay = 0,
+  children,
+}: {
+  title: string
+  delay?: number
+  children: ReactNode
+}): JSX.Element => (
+  <Reveal as="section" delay={delay} className="cv-section">
+    <Heading as="h2" size="xl" marginBottom={{ base: 3, md: 4 }}>
+      {title}
+    </Heading>
+    {children}
+  </Reveal>
+)
+
+const Meta = ({ children }: { children: ReactNode }): JSX.Element => (
+  <Text fontSize="sm" color="fg.muted">
+    {children}
+  </Text>
+)
+
 export default function CvPage(): JSX.Element {
   const cv = cvData
+  const [firstName, ...lastNames] = cv.name.split(' ')
 
   return (
     <>
@@ -56,153 +75,170 @@ export default function CvPage(): JSX.Element {
         path="/cv"
       />
 
-      <Box
+      <Stack
         className="cv"
         width="100%"
-        maxWidth="960px"
-        paddingTop={{ base: 20, md: 24 }}
+        maxWidth="800px"
+        gap={{ base: 10, md: 12 }}
+        paddingTop={{ base: 20, md: 16 }}
         paddingBottom={16}
-        paddingX={{ base: 2, md: 4 }}
       >
+        {/* Same entrance as the home page: portrait, name, then the rest. */}
         <Flex
           as="header"
-          direction={{ base: 'column', sm: 'row' }}
-          justify="space-between"
-          align={{ base: 'flex-start', sm: 'flex-end' }}
-          gap={4}
-          marginBottom={10}
-          className="cv-header"
+          direction="column"
+          align="center"
+          textAlign="center"
+          gap={2}
+          className="cv-hero"
         >
-          <Flex align="center" gap={{ base: 4, md: 6 }}>
-            <Box
-              flexShrink={0}
-              width={{ base: '72px', md: '96px' }}
-              borderRadius="full"
-              overflow="hidden"
-              className="cv-photo"
-            >
-              <Image
-                priority
-                src={cv.photo}
-                width="200"
-                height="200"
-                alt={cv.name}
-              />
-            </Box>
-            <Stack gap={1}>
-              <Heading as="h1" size={{ base: '3xl', md: '4xl' }}>
-                {cv.name}
-              </Heading>
-              <Text fontSize="lg">{cv.headline}</Text>
-              <Text color="fg.muted">
-                {cv.location} · Updated {formatUpdated(cv.updated)}
+          <Box
+            className="blur-in cv-photo"
+            width={{ base: '128px', md: '160px' }}
+            borderRadius="full"
+            overflow="hidden"
+            marginBottom={2}
+          >
+            <Image
+              priority
+              src={cv.photo}
+              width="200"
+              height="200"
+              alt={cv.name}
+            />
+          </Box>
+          <Box
+            className="rise-in"
+            style={{ '--rise-delay': '160ms' } as CSSProperties}
+          >
+            <Heading as="h1" size={{ base: '4xl', md: '5xl' }}>
+              {firstName}{' '}
+              <Text as="span" color="link">
+                {lastNames.join(' ')}
               </Text>
-            </Stack>
-          </Flex>
-          <Button asChild variant="outline" className="no-print">
-            <a href={CV_PDF_PATH} download>
-              <Download /> Download PDF
-            </a>
-          </Button>
+            </Heading>
+            <Text fontSize={{ base: 'lg', md: 'xl' }} marginTop={2}>
+              {cv.headline}
+            </Text>
+            <Text color="fg.muted" marginTop={1}>
+              {cv.location} · Updated {formatUpdated(cv.updated)}
+            </Text>
+          </Box>
         </Flex>
 
-        <Flex
-          direction={{ base: 'column', md: 'row' }}
-          gap={{ base: 10, md: 12 }}
-          className="cv-columns"
+        <SimpleGrid
+          columns={{ base: 2, md: 4 }}
+          gap={{ base: 3, md: 4 }}
+          className="cv-links"
         >
-          <Stack
-            as="aside"
-            gap={8}
-            flexBasis={{ md: '240px' }}
-            flexShrink={0}
-            className="cv-sidebar"
-          >
-            <Section title="Contact">
-              <Stack gap={1}>
-                {cv.contact.map(({ label, href }) => (
-                  <Link key={href} href={href} wordBreak="break-word">
+          {cv.contact.map(({ name, label, href }, index) => {
+            const LinkIcon = iconFor(href)
+            return (
+              <Reveal key={href} delay={320 + index * 70}>
+                <Card href={href}>
+                  <Heading
+                    as="h2"
+                    size="md"
+                    display="flex"
+                    alignItems="center"
+                    className="no-print"
+                  >
+                    {name}
+                    <LinkIcon className="card-icon" style={iconStyle} />
+                  </Heading>
+                  <Text fontSize="sm" color="fg.muted" marginTop={1} truncate>
                     {label}
-                  </Link>
-                ))}
-              </Stack>
-            </Section>
-            <Section title="Certifications">
-              <Stack as="ul" gap={1} listStyleType="none">
-                {cv.certifications.map((cert) => (
-                  <Box as="li" key={cert}>
-                    {cert}
-                  </Box>
-                ))}
-              </Stack>
-            </Section>
-          </Stack>
+                  </Text>
+                </Card>
+              </Reveal>
+            )
+          })}
+          <Reveal delay={320 + cv.contact.length * 70} className="no-print">
+            <Card href={CV_PDF_PATH} download="Resume-Petro-Silenius.pdf">
+              <Heading as="h2" size="md" display="flex" alignItems="center">
+                Download PDF
+                <Download className="card-icon" style={iconStyle} />
+              </Heading>
+              <Text fontSize="sm" color="fg.muted" marginTop={1}>
+                Printable A4 copy.
+              </Text>
+            </Card>
+          </Reveal>
+        </SimpleGrid>
 
-          <Stack gap={10} flex="1" minWidth={0} className="cv-main">
-            <Section title="Summary">
+        <Section title="Summary">
+          <Panel>
+            <Stack gap={3}>
               <Stack as="ul" gap={1} paddingStart={5} listStyleType="disc">
                 {cv.highlights.map((highlight) => (
-                  <Box as="li" key={highlight}>
+                  <Box as="li" key={highlight} fontWeight="medium">
                     {highlight}
                   </Box>
                 ))}
               </Stack>
               {cv.summary.map((paragraph) => (
-                <Text key={paragraph} lineHeight="tall">
+                <Text key={paragraph} lineHeight="tall" color="fg.muted">
                   {paragraph}
                 </Text>
               ))}
-            </Section>
+            </Stack>
+          </Panel>
+        </Section>
 
-            <Section title="Experience">
-              <Stack gap={8} separator={<Separator />}>
-                {cv.experience.map(({ company, roles }) => (
-                  <Stack key={company} gap={4} className="cv-entry">
-                    <Heading as="h3" size="lg">
-                      {company}
-                    </Heading>
-                    {roles.map((role) => (
-                      <Stack key={role.title} gap={1} className="cv-role">
-                        <Flex justify="space-between" wrap="wrap" columnGap={4}>
-                          <Text fontWeight="semibold">{role.title}</Text>
-                          <Text color="fg.muted" fontSize="sm">
-                            {role.period} · {role.location}
-                          </Text>
-                        </Flex>
-                        {'description' in role && role.description && (
-                          <Text lineHeight="tall">{role.description}</Text>
-                        )}
-                      </Stack>
-                    ))}
-                  </Stack>
-                ))}
-              </Stack>
-            </Section>
-
-            <Section title="Education">
-              <Stack gap={3}>
-                {cv.education.map(({ school, degree, period }) => (
-                  <Flex
-                    key={degree}
-                    justify="space-between"
-                    wrap="wrap"
-                    columnGap={4}
-                    className="cv-role"
-                  >
-                    <Box>
-                      <Text fontWeight="semibold">{degree}</Text>
-                      <Text>{school}</Text>
-                    </Box>
-                    <Text color="fg.muted" fontSize="sm">
-                      {period}
-                    </Text>
-                  </Flex>
-                ))}
-              </Stack>
-            </Section>
+        <Section title="Experience">
+          <Stack gap={{ base: 3, md: 4 }}>
+            {cv.experience.map(({ company, roles }) => (
+              <Panel key={company}>
+                <Stack gap={4} className="cv-entry">
+                  <Heading as="h3" size="lg">
+                    {company}
+                  </Heading>
+                  {roles.map((role) => (
+                    <Stack key={role.title} gap={1} className="cv-role">
+                      <Flex justify="space-between" wrap="wrap" columnGap={4}>
+                        <Text fontWeight="semibold">{role.title}</Text>
+                        <Meta>
+                          {role.period} · {role.location}
+                        </Meta>
+                      </Flex>
+                      {'description' in role && role.description && (
+                        <Text lineHeight="tall" color="fg.muted">
+                          {role.description}
+                        </Text>
+                      )}
+                    </Stack>
+                  ))}
+                </Stack>
+              </Panel>
+            ))}
           </Stack>
-        </Flex>
-      </Box>
+        </Section>
+
+        <Section title="Education">
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={{ base: 3, md: 4 }}>
+            {cv.education.map(({ school, degree, period }) => (
+              <Panel key={degree}>
+                <Stack gap={1} className="cv-role">
+                  <Text fontWeight="semibold">{degree}</Text>
+                  <Meta>
+                    {school} · {period}
+                  </Meta>
+                </Stack>
+              </Panel>
+            ))}
+          </SimpleGrid>
+        </Section>
+
+        <Section title="Certifications">
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={{ base: 3, md: 4 }}>
+            {cv.certifications.map((cert) => (
+              <Panel key={cert}>
+                <Text fontWeight="semibold">{cert}</Text>
+              </Panel>
+            ))}
+          </SimpleGrid>
+        </Section>
+      </Stack>
     </>
   )
 }

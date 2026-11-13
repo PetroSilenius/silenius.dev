@@ -5,14 +5,17 @@
   "location": "Turku Metropolitan Area, Finland",
   "contact": [
     {
+      "name": "LinkedIn",
       "label": "linkedin.com/in/petrosilenius",
       "href": "https://www.linkedin.com/in/petrosilenius"
     },
     {
+      "name": "Website",
       "label": "silenius.dev",
       "href": "https://www.silenius.dev"
     },
     {
+      "name": "GitHub",
       "label": "github.com/PetroSilenius",
       "href": "https://github.com/PetroSilenius"
     }
