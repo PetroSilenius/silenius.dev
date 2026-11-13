@@ -4,13 +4,12 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 import {
   Box,
-  Button,
   Flex,
   Heading,
   HStack,
   Icon,
-  IconButton,
   Link,
+  SimpleGrid,
   Stack,
   Text,
 } from '@chakra-ui/react'
@@ -24,6 +23,7 @@ import {
   Radio,
   Check,
 } from 'react-feather'
+import { Card, CardButton } from './Card'
 
 interface BusinessCardProps {
   imgSrc: string
@@ -219,33 +219,28 @@ export const BusinessCard = ({
         </Flex>
       </Box>
 
-      <HStack
-        gap={3}
-        wrap="wrap"
-        justify="center"
+      <SimpleGrid
+        columns={canWriteNfc ? { base: 1, sm: 3 } : 2}
+        gap={{ base: 3, md: 4 }}
+        width="100%"
         className="rise-in"
         style={{ '--rise-delay': '200ms' } as CSSProperties}
       >
-        <Button onClick={handleShare} size="lg" colorPalette="blue">
-          <Share2 /> Share card
-        </Button>
-        <Button asChild size="lg" variant="outline">
-          <a href={vcardHref} download="Petro-Silenius.vcf">
-            <UserPlus /> Save contact
-          </a>
-        </Button>
+        <CardButton onClick={handleShare}>
+          <ActionLabel icon={Share2} label="Share card" />
+          <ActionHint>Send it from your phone.</ActionHint>
+        </CardButton>
+        <Card href={vcardHref} download="Petro-Silenius.vcf">
+          <ActionLabel icon={UserPlus} label="Save contact" />
+          <ActionHint>Add me to your contacts.</ActionHint>
+        </Card>
         {canWriteNfc && (
-          <IconButton
-            onClick={handleWriteNfc}
-            size="lg"
-            variant="outline"
-            aria-label="Write this card to an NFC tag"
-            title="Write this card to an NFC tag"
-          >
-            <Radio />
-          </IconButton>
+          <CardButton onClick={handleWriteNfc}>
+            <ActionLabel icon={Radio} label="Write NFC tag" />
+            <ActionHint>Tap a tag to open this card.</ActionHint>
+          </CardButton>
         )}
-      </HStack>
+      </SimpleGrid>
 
       <Text
         role="status"
@@ -267,3 +262,26 @@ export const BusinessCard = ({
     </Stack>
   )
 }
+
+// Same type scale as the link cards on the home page.
+const ActionLabel = ({
+  icon: ActionIcon,
+  label,
+}: {
+  icon: typeof Share2
+  label: string
+}): JSX.Element => (
+  <Heading as="h2" size="md" display="flex" alignItems="center">
+    {label}
+    <ActionIcon
+      className="card-icon"
+      style={{ marginLeft: '8px', width: '18px', height: '18px' }}
+    />
+  </Heading>
+)
+
+const ActionHint = ({ children }: { children: string }): JSX.Element => (
+  <Text fontSize="sm" color="fg.muted" marginTop={1}>
+    {children}
+  </Text>
+)
